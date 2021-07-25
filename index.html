@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Место</title>
+  <link rel="stylesheet" href="./pages/index.css" />
+</head>
+
+<body class="body">
+  <header class="header">
+    <img class="header__logo" src="./images/logo.svg" alt="Лого" />
+  </header>
+  <main class="root">
+    <div class="profile">
+      <img class="profile__avatar" src="./images/kusto.png" alt="Аватар" />
+      <div class="profile__info">
+        <h1 class="profile__title">Жак-Ив Кусто</h1>
+        <p class="profile__subtitle">Исследователь океана</p>
+        <button class="profile__info_edit-button" type="button"></button>
+      </div>
+      <button class="profile__add-button" type="button"></button>
+
+    </div>
+    <ul class="elements">
+      <li class="elements__cell">
+        <img class="elements__image" src="./images/church.jpg" alt="Церковь" />
+        <h2 class="elements__cell_title">Карачаевск</h2>
+        <img src="./images/heart-black-border.svg" alt="лого лайк" class="elements__cell_like" />
+      </li>
+      <li class="elements__cell">
+        <img class="elements__image" src="./images/sky.jpg" alt="гора Эльбрус" />
+        <h2 class="elements__cell_title">Гора Эльбрус</h2>
+        <img src="./images/heart-black-border.svg" alt="лого лайк" class="elements__cell_like" />
+      </li>
+      <li class="elements__cell">
+        <img class="elements__image" src="./images/mountain.png" alt="Домбай" />
+        <h2 class="elements__cell_title">Домбай</h2>
+        <img src="./images/heart-black-border.svg" alt="лого лайк" class="elements__cell_like" />
+      </li>
+      <li class="elements__cell">
+        <img class="elements__image" src="./images/sky.jpg" alt="гора Эльбрус" />
+        <h2 class="elements__cell_title">Гора Эльбрус</h2>
+        <img src="./images/heart-black-border.svg" alt="лого лайк" class="elements__cell_like" />
+      </li>
+      <li class="elements__cell">
+        <img class="elements__image" src="./images/mountain.png" alt="Домбай" />
+        <h2 class="elements__cell_title">Домбай</h2>
+        <img src="./images/heart-black-border.svg" alt="лого лайк" class="elements__cell_like" />
+      </li>
+      <li class="elements__cell">
+        <img class="elements__image" src="./images/church.jpg" alt="Церковь" />
+        <h2 class="elements__cell_title">Карачаево-Черкеск</h2>
+        <img src="./images/heart-black-border.svg" alt="лого лайк" class="elements__cell_like" />
+      </li>
+    </ul>
+  </main>
+  <footer class="footer">
+    <h3 class="footer__title">© 2021 Mesto Russia</h3>
+  </footer>
+  <section class="popup">
+    <form class="popup__container">
+      <button class="popup__close"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <input class="popup__name" value="Жак-Ив Кусто"></input>
+      <input class="popup__status" value="Исследователь океана"></input>
+      <button class="popup__submit" type="submit">Сохранить</button>
+    </form>
+  </section>
+</body>
+<script src="./scripts/index.js" defer></script>
+
+</html>

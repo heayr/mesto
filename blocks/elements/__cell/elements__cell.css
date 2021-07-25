@@ -1,0 +1,12 @@
+.elements__cell {
+  max-width: 282px;
+  border-radius: 11px;
+  background-color: white;
+  color: black;
+  display: grid;
+}
+
+/* @media screen and (max-width: 400px) {
+  .elements__cell {
+  }
+} */

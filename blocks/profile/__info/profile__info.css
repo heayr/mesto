@@ -1,0 +1,11 @@
+.profile__info {
+  align-self: center;
+  display: grid;
+  /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+}
+
+@media screen and (max-width: 400px) {
+  .profile__info {
+    grid-template-columns: 2fr 0.5fr;
+  }
+}

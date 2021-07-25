@@ -1,0 +1,7 @@
+.elements__cell_like {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  align-self: center;
+  justify-self: end;
+  margin: 30px 20px;
+}
