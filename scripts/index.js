@@ -1,4 +1,4 @@
-const popupEdit = document.querySelector(".profile__info_edit-button");
+const popupEdit = document.querySelector(".profile__edit-button");
 const popupClose = document.querySelector(".popup__close");
 // думал как реализовать закрытие если нажать кнопкой мыши вне попапа, пока не придумал
 // const popupCloseBack = document.querySelector('.popup__opened');
