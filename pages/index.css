@@ -20,8 +20,8 @@
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/elements/__cell/elements__cell.css);
 @import url(../blocks/elements/__image/elements__image.css);
-@import url(../blocks/elements/__cell/cell-title.css);
-@import url(../blocks/elements/__cell/_like/elements__cell_like.css);
+@import url(../blocks/elements/__cell/elements__cell-title.css);
+@import url(../blocks/elements/__cell/elements__cell-like.css);
 /* popup */
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__opened/popup__opened.css);
