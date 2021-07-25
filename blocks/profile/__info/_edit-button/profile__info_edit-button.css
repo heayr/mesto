@@ -3,7 +3,8 @@
   grid-row: 1/1;
   /* padding: 6px; */
   padding: 0;
-  margin: 11px 0 0 -75px;
+  /* margin: 11px 0 0 -75px; */
+  margin: 11px 0 0 0;
   border: solid 1px white;
   background: transparent;
   width: 24px;

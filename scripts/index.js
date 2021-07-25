@@ -33,7 +33,7 @@ function formSubmitHandler(evt) {
   let jobChange = document.querySelector('.profile__subtitle');
   jobChange.textContent = statusInput.value;
 
-  closePopup();
+  // popupClose();
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
