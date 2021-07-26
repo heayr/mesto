@@ -7,6 +7,8 @@ let statusInput = formElement.querySelector(".popup__input_status");
 let nameChange = document.querySelector(".profile__title");
 let jobChange = document.querySelector(".profile__subtitle");
 
+
+
 function togglePopup(event) {
   event.stopPropagation();
   popup.classList.toggle("popup__opened");
@@ -14,21 +16,16 @@ function togglePopup(event) {
 
 popupEdit.addEventListener("click", togglePopup);
 popupClose.addEventListener("click", togglePopup);
-
 // save
-
-
-
 function formSubmitHandler(evt) {
   evt.preventDefault();
-
   nameChange.textContent = nameInput.value;
-
   jobChange.textContent = statusInput.value;
-//  popupClose(popup__submit);
-document.getElementsByClassName('popup__opened')[0].remove();
+
+  // closePopup();
 
 
+  // document.getElementsByClassName('popup__opened')[0].remove();
 }
 
 // let text = document.querySelector('.')
