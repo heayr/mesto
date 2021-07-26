@@ -1,4 +1,4 @@
-/*стилевой всегда первый */
+
 @import url(../vendor/normalize.css);
 /* шрифт 2-ой */
 @import url(../vendor/font.css);
@@ -30,8 +30,6 @@
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__input/popup__input.css);
-@import url(../blocks/popup/__input/popup__input_name.css);
-@import url(../blocks/popup/__input/popup__input_status.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__submit/popup__submit.css);
 @import url(../blocks/popup/__form/popup__form.css);
@@ -39,4 +37,4 @@
 @import url(../blocks/popup/__opened/popup__opened.css);
 /* footer */
 @import url(../blocks/footer/__title/footer__title.css);
-@import url(../blocks/footer/footer.css); ;
+@import url(../blocks/footer/footer.css);

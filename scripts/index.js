@@ -7,8 +7,6 @@ let nameInput = formElement.querySelector(".popup__input_name");
 let statusInput = formElement.querySelector(".popup__input_status");
 let profileName = document.querySelector(".profile__title");
 let statusChange = document.querySelector(".profile__subtitle");
-console.log(profileName);
-console.log(statusChange);
 
 // Функция открытия popup и копирования данных из титула и подтитула
 function openPopup(event) {
