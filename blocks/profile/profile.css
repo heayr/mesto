@@ -4,10 +4,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* grid-template-columns: repeat(1fr 3); */
-
-  /* На флексах это оказалось проще. Но я бы хотел понять как на гридах сделать такую
-  же адаптивность, гриды мне как-то больше нравятся xD */
 }
 
 @media screen and (max-width: 900px) {
@@ -21,8 +17,6 @@
     max-width: 282px;
     margin: 42px auto 0;
     flex-direction: column;
-    /* grid-template-columns: 1fr; */
-    /* grid-template-rows: repeat 0.5fr 1fr 0.5fr; */
     justify-items: center;
   }
 }

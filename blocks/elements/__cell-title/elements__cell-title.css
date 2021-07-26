@@ -1,7 +1,6 @@
 .elements__cell-title {
   padding: 0;
   margin: 0 0 0 20px;
-  /* justify-self: center; */
   align-self: center;
   width: 180px;
   grid-column: 1/2;
