@@ -15,8 +15,7 @@
 
 @media screen and (max-width: 400px) {
   .profile__edit-button {
-    /* padding: 3px; */
-    margin: 35px 15px 0 0px;
+    margin: 35px 0 0 0;
     width: 18px;
     height: 18px;
   }
@@ -25,6 +24,4 @@
 .profile__edit-button:hover {
   transition: 0.3s ease;
   opacity: 0.6;
-  background-image: url(../../../../images/edit-grey.png);
-  border-color: rgba(153, 153, 153, 0.6);
 }

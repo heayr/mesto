@@ -28,99 +28,80 @@
         <!-- кнопка добавить -->
         <button class="profile__add-button" type="button"></button>
       </section>
-      <ul class="elements">
-        <li class="elements__cell">
-          <img
-            class="elements__image"
-            src="./images/church.jpg"
-            alt="Церковь"
-          />
-          <h2 class="elements__cell-title">Карачаевск</h2>
-          <img
-            src="./images/heart-black-border.svg"
-            alt="лого лайк"
-            class="elements__cell-like"
-          />
-        </li>
-        <li class="elements__cell">
-          <img
-            class="elements__image"
-            src="./images/sky.jpg"
-            alt="гора Эльбрус"
-          />
-          <h2 class="elements__cell-title">Гора Эльбрус</h2>
-          <img
-            src="./images/heart-black-border.svg"
-            alt="лого лайк"
-            class="elements__cell-like"
-          />
-        </li>
-        <li class="elements__cell">
-          <img
-            class="elements__image"
-            src="./images/mountain.png"
-            alt="Домбай"
-          />
-          <h2 class="elements__cell-title">Домбай</h2>
-          <img
-            src="./images/heart-black-border.svg"
-            alt="лого лайк"
-            class="elements__cell-like"
-          />
-        </li>
-        <li class="elements__cell">
-          <img
-            class="elements__image"
-            src="./images/sky.jpg"
-            alt="гора Эльбрус"
-          />
-          <h2 class="elements__cell-title">Гора Эльбрус</h2>
-          <img
-            src="./images/heart-black-border.svg"
-            alt="лого лайк"
-            class="elements__cell-like"
-          />
-        </li>
-        <li class="elements__cell">
-          <img
-            class="elements__image"
-            src="./images/mountain.png"
-            alt="Домбай"
-          />
-          <h2 class="elements__cell-title">Домбай</h2>
-          <img
-            src="./images/heart-black-border.svg"
-            alt="лого лайк"
-            class="elements__cell-like"
-          />
-        </li>
-        <li class="elements__cell">
-          <img
-            class="elements__image"
-            src="./images/church.jpg"
-            alt="Церковь"
-          />
-          <h2 class="elements__cell-title">Карачаево-Черкеск</h2>
-          <img
-            src="./images/heart-black-border.svg"
-            alt="лого лайк"
-            class="elements__cell-like"
-          />
-        </li>
-      </ul>
+      <!-- секция карточек -->
+      <section class="elements-section">
+        <ul class="elements">
+          <li class="elements__cell">
+            <img
+              class="elements__image"
+              src="./images/church.jpg"
+              alt="Церковь"
+            />
+            <h2 class="elements__cell-title">Карачаевск</h2>
+            <button class="elements__cell-like" type="button"></button>
+          </li>
+          <li class="elements__cell">
+            <img
+              class="elements__image"
+              src="./images/sky.jpg"
+              alt="гора Эльбрус"
+            />
+            <h2 class="elements__cell-title">Гора Эльбрус</h2>
+            <button class="elements__cell-like" type="button"></button>
+          </li>
+          <li class="elements__cell">
+            <img
+              class="elements__image"
+              src="./images/mountain.png"
+              alt="Домбай"
+            />
+            <h2 class="elements__cell-title">Домбай</h2>
+            <button class="elements__cell-like" type="button"></button>
+          </li>
+          <li class="elements__cell">
+            <img
+              class="elements__image"
+              src="./images/sky.jpg"
+              alt="гора Эльбрус"
+            />
+            <h2 class="elements__cell-title">Гора Эльбрус</h2>
+            <button class="elements__cell-like" type="button"></button>
+          </li>
+          <li class="elements__cell">
+            <img
+              class="elements__image"
+              src="./images/mountain.png"
+              alt="Домбай"
+            />
+            <h2 class="elements__cell-title">Домбай</h2>
+            <button class="elements__cell-like" type="button"></button>
+          </li>
+          <li class="elements__cell">
+            <img
+              class="elements__image"
+              src="./images/church.jpg"
+              alt="Церковь"
+            />
+            <h2 class="elements__cell-title">Карачаево-Черкеск</h2>
+            <button class="elements__cell-like" type="button"></button>
+          </li>
+        </ul>
+      </section>
     </main>
     <footer class="footer">
-      <h3 class="footer__title">© 2021 Mesto Russia</h3>
+      <p class="footer__title">© 2021 Mesto Russia</p>
     </footer>
-    <section class="popup">
-      <form class="popup__container">
-        <button class="popup__close"></button>
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__name" value="Жак-Ив Кусто" />
-        <input class="popup__status" value="Исследователь океана" />
-        <button class="popup__submit" type="submit">Сохранить</button>
-      </form>
-    </section>
+    <div class="popup">
+      <div class="popup__container">
+        <form class="popup__form" action="" name="form">
+          <button class="popup__close" type="button"></button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="popup__input popup__input_name" value="Жак-Ив Кусто" />
+          <input class="popup__input popup__input_status" value="Исследователь океана" />
+          <button class="popup__submit" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <script src="./scripts/index.js" defer></script>
   </body>
-  <script src="./scripts/index.js" defer></script>
 </html>

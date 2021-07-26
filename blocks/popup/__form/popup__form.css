@@ -1,0 +1,7 @@
+.popup__form {
+  width: 100%;
+  max-width: 430px;
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+}

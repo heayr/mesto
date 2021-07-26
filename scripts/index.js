@@ -1,11 +1,11 @@
 const popupEdit = document.querySelector(".profile__edit-button");
 const popupClose = document.querySelector(".popup__close");
-// думал как реализовать закрытие если нажать кнопкой мыши вне попапа, пока не придумал
-// const popupCloseBack = document.querySelector('.popup__opened');
-
 const popup = document.querySelector(".popup");
-
-const popupContent = document.querySelector(".popup__container");
+let formElement = document.querySelector(".popup__container");
+let nameInput = formElement.querySelector(".popup__input_name");
+let statusInput = formElement.querySelector(".popup__input_status");
+let nameChange = document.querySelector(".profile__title");
+let jobChange = document.querySelector(".profile__subtitle");
 
 function togglePopup(event) {
   event.stopPropagation();
@@ -14,24 +14,25 @@ function togglePopup(event) {
 
 popupEdit.addEventListener("click", togglePopup);
 popupClose.addEventListener("click", togglePopup);
-// popupCloseBack.addEventListener('click', togglePopup);
 
 // save
 
-let formElement = document.querySelector(".popup__container");
-let nameInput = formElement.querySelector(".popup__name");
-let statusInput = formElement.querySelector(".popup__status");
+
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
 
-  let nameChange = document.querySelector(".profile__title");
   nameChange.textContent = nameInput.value;
 
-  let jobChange = document.querySelector(".profile__subtitle");
   jobChange.textContent = statusInput.value;
+//  popupClose(popup__submit);
+document.getElementsByClassName('popup__opened')[0].remove();
 
-  // popupClose();
+
 }
+
+// let text = document.querySelector('.')
+// document.querySelector('profile__title').textContent = '';
+
 
 formElement.addEventListener("submit", formSubmitHandler);

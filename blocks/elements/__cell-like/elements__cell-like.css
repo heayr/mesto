@@ -1,0 +1,24 @@
+.elements__cell-like {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  align-self: center;
+  justify-self: end;
+  margin: 30px 20px;
+  background: transparent;
+  border: none;
+  background-image: url(../../../images/heart-black-border.svg);
+  background-repeat: no-repeat;
+  height: 19px;
+  width: 22px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  opacity: 1;
+}
+
+.elements__cell-like:hover {
+  opacity: 0.5;
+}
+
+/* .elements__cell-like:active{
+  background-image: url(../../../images/);
+} */
