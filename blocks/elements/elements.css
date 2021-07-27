@@ -17,11 +17,20 @@
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   .elements {
     max-width: calc(282px - (1px * 2));
     margin: 35px auto 0;
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+}
+
+/* @media screen and (max-width: 400px) { */
+  /* .elements { */
+    /* max-width: calc(282px - (1px * 2)); */
+    /* margin: 35px auto 0; */
+    /* grid-template-columns: 1fr; */
+    /* gap: 20px; */
   }
 }
