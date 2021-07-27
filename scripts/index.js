@@ -1,4 +1,4 @@
-// переменные
+// переменные и константы
 const popupEdit = document.querySelector(".profile__edit-button");
 const popupClose = document.querySelector(".popup__close");
 const popup = document.querySelector(".popup");
