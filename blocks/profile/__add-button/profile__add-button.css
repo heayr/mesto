@@ -14,11 +14,20 @@
   transition: 0.3s ease;
 }
 
+@media screen and (max-width: 594px) {
+  .profile__add-button {
+    width: 200px;
+    margin: 10px auto;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .profile__add-button {
     margin-top: 32px;
     justify-self: center;
     width: auto;
+    width: 282px;
+
     background-size: 16px 16px;
   }
 }

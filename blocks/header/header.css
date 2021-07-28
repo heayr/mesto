@@ -5,9 +5,15 @@
   border-bottom: solid rgba(84, 84, 84, 0.7) 1px;
 }
 
-@media screen and (max-width: 900px) {
+/* @media screen and (max-width: 900px) {
   .header {
     max-width: calc(900px - (50px * 2));
+  }
+} */
+
+@media screen and (max-width: 900px) {
+  .header {
+    max-width: calc(100% - 100px);
   }
 }
 

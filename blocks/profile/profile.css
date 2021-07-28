@@ -12,11 +12,17 @@
   }
 }
 
+@media screen and (max-width: 594px) {
+  .profile {
+    max-width: 400px;
+    flex-direction: column;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .profile {
     max-width: 282px;
     margin: 42px auto 0;
-    flex-direction: column;
     justify-items: center;
   }
 }
