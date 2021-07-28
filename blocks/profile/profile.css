@@ -8,11 +8,11 @@
 
 @media screen and (max-width: 900px) {
   .profile {
-    max-width: calc(900px - (50px * 2));
+    max-width: calc(100% - (50px * 2));
   }
 }
 
-@media screen and (max-width: 594px) {
+@media screen and (max-width: 660px) {
   .profile {
     max-width: 400px;
     flex-direction: column;
