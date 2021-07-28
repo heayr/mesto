@@ -14,13 +14,12 @@
   transition: 0.3s ease;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   .profile__add-button {
     margin-top: 32px;
     justify-self: center;
     width: auto;
     background-size: 16px 16px;
-    /* padding: 12px 139px; */
   }
 }
 .profile__add-button:hover {
