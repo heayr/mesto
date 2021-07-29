@@ -14,6 +14,11 @@
   transition: 0.3s ease;
 }
 
+.profile__add-button:hover {
+  opacity: 0.6;
+  transition: 0.3s ease;
+}
+
 @media screen and (max-width: 681px) {
   .profile__add-button {
     width: 200px;
@@ -25,13 +30,7 @@
   .profile__add-button {
     margin-top: 32px;
     justify-self: center;
-    width: auto;
     width: 282px;
-
     background-size: 16px 16px;
   }
-}
-.profile__add-button:hover {
-  opacity: 0.6;
-  transition: 0.3s ease;
 }
