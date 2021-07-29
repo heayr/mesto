@@ -13,6 +13,13 @@
   transition: 0.3s ease;
 }
 
+@media screen and (max-width: 660px) {
+  .profile__edit-button{
+  margin-left: 8px;
+  }
+  }
+
+
 @media screen and (max-width: 400px) {
   .profile__edit-button {
     margin: 35px 0 0 0;
