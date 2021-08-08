@@ -1,5 +1,5 @@
 /* реализовать:
-1. текст в карточках
+1. текст в карточках СДЕЛАНО
 2. отображение новых карточек
 3. лайки
 4. открытие попапов картинок
@@ -65,7 +65,7 @@ function AddPicture(event) {
   openPopup(popupAddPic);
 }
 
-// типа рабочий код закрывает на кнопку сабмит попап картинки, остальное
+// типа рабочий код закрывает на кнопку SUBMIT попап картинки, остальное
 pictureForm.addEventListener('submit', (event) => {
   event.preventDefault();
   popupPictures.classList.remove('popup_opened');
@@ -77,7 +77,7 @@ pictureForm.addEventListener('submit', (event) => {
 function deletePic(e) {
   e.target.closest('.elements__cell').remove();
 }
-// функция рендера начальных карточек. отображение Текста не работает
+// функция рендера начальных карточек.
 function initialCardsPrerender(i) {
   const clonePicture = templateId.content.firstElementChild.cloneNode(true);
   clonePicture.querySelector('.elements__image')
@@ -112,10 +112,10 @@ function removePopup(event) {
   popup.classList.remove('popup_opened')
 }
 
-// function removePopupPic(popup_cards) {
-//   popup_cards.stopPropagation();
-//   popupPictures.classList.remove('popup_opened');
-// }
+function removePopupPic(popup_cards) {
+  popup_cards.stopPropagation();
+  popupPictures.classList.remove('popup_opened');
+}
 
 // save and close of popup info
 function formSubmitHandler(evt) {
@@ -130,7 +130,7 @@ function formSubmitHandler(evt) {
 popupEdit.addEventListener('click', () => openPopup(popup));
 popupAddPic.addEventListener('click', () => openPopup(popupPictures));
 popupClose.addEventListener('click', removePopup);
-// popupPicClose.addEventListener('click', removePopupPic);
+popupPicClose.addEventListener('click', removePopupPic);
 formElement.addEventListener('submit', formSubmitHandler);
 
 
