@@ -52,6 +52,8 @@ function AddPicture(event) {
 pictureForm.addEventListener('submit', (event) => {
   event.preventDefault();
   popupPictures.classList.remove('popup_opened');
+  const nameInput = document.querySelector('.popup__input_picture-name').value = '';
+  const urlInput = document.querySelector('.popup__input_picture-link').value = '';
 })
 
 // функция удаления карточки
@@ -67,7 +69,7 @@ function initialCardsPrerender(i) {
   const newPicture = clonePicture.querySelector('.elements__image');
   newPicture.setAttribute('src', i.link);
   newPicture.setAttribute('alt', i.name);
-
+  // nameInput.value = ' ';
 
   // удаление карточки внутри функции через таргет
   clonePicture.querySelector('.elements__delete-button').addEventListener('click', deletePic);
@@ -109,10 +111,10 @@ function removePopup(event) {
   popup.classList.remove('popup_opened')
 }
 
-function removePopupPic(popup_cards) {
-  popup_cards.stopPropagation();
-  popupPictures.classList.remove('popup_opened');
-}
+// function removePopupPic(popup_cards) {
+//   popup_cards.stopPropagation();
+//   popupPictures.classList.remove('popup_opened');
+// }
 
 // save and close of popup info
 function formSubmitHandler(evt) {
@@ -127,7 +129,7 @@ function formSubmitHandler(evt) {
 popupEdit.addEventListener('click', () => openPopup(popup));
 popupAddPic.addEventListener('click', () => openPopup(popupPictures));
 popupClose.addEventListener('click', removePopup);
-popupPicClose.addEventListener('click', removePopupPic);
+// popupPicClose.addEventListener('click', removePopupPic);
 formElement.addEventListener('submit', formSubmitHandler);
 
 
