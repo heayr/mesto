@@ -23,7 +23,7 @@
 @import url(../blocks/elements/__image/elements__image.css);
 @import url(../blocks/elements/__cell-like/elements__cell-like.css);
 @import url(../blocks/elements/__cell-title/elements__cell-title.css);
-
+@import url(../blocks/elements/__delete-button/elements__delete-button.css);
 /* popup */
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__container/popup__container.css);

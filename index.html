@@ -32,7 +32,7 @@
       <!-- секция карточек -->
       <section class="elements-section">
         <ul class="elements">
-          <li class="elements__cell">
+          <!-- <li class="elements__cell">
             <img
               class="elements__image"
               src="./images/church.jpg"
@@ -40,6 +40,7 @@
             />
             <h2 class="elements__cell-title">Карачаевск</h2>
             <button class="elements__cell-like" type="button"></button>
+            <button class="elements__delete-button" type="button"></button>
           </li>
           <li class="elements__cell">
             <img
@@ -85,7 +86,7 @@
             />
             <h2 class="elements__cell-title">Карачаево-Черкеск</h2>
             <button class="elements__cell-like" type="button"></button>
-          </li>
+          </li> -->
         </ul>
       </section>
     </main>
@@ -93,7 +94,8 @@
     <footer class="footer">
       <p class="footer__title">© 2021 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <!-- попап для редактирования -->
+    <div class="popup" id="popup">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
         <form class="popup__form" name="profile-form">
@@ -103,6 +105,7 @@
             type="text"
             value=""
             name="input-name"
+            required
           />
           <input
             class="popup__input popup__input_text_status"
@@ -114,6 +117,45 @@
         </form>
       </div>
     </div>
+    <!-- попап для создания карточек  -->
+    <div class="popup popup_cards" id="popup_cards">
+      <div class="popup__container">
+        <button class="popup__close popup__close_pic" type="button"></button>
+        <form class="popup__form popup__form-pic" name="picture-form">
+          <h2 class="popup__title popup__title_picture">Новое место</h2>
+          <input
+            class="popup__input popup__input_picture-name"
+            type="text"
+            value=""
+            placeholder="Название"
+            name="input-picture-name"
+          />
+          <input
+            class="popup__input popup__input_picture-link"
+            type="text"
+            name="input-picture-link"
+            placeholder="Ссылка на картинку"
+            value=""
+          />
+          <button
+            class="popup__submit popup__submit-pic"
+            id="submit"
+            type="submit"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- темплейт для карточек -->
+    <template class="template-cards" id="template">
+      <li class="elements__cell">
+        <img class="elements__image" alt />
+        <h2 class="elements__cell-title"></h2>
+        <button class="elements__cell-like" type="button"></button>
+        <button class="elements__delete-button" type="button"></button>
+      </li>
+    </template>
     <script src="./scripts/index.js" defer></script>
   </body>
 </html>

@@ -4,4 +4,8 @@
   color: white;
   min-width: 320px;
   margin: 0;
+  /* -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important; */
 }
