@@ -1,3 +1,9 @@
+/* реализовать:
+1. текст в карточках
+2. отображение новых карточек
+3. лайки
+4. открытие попапов картинок
+*/
 // начальные карточки
 
 const initialCards = [
@@ -75,7 +81,7 @@ function deletePic(e) {
 function initialCardsPrerender(i) {
   const clonePicture = templateId.content.firstElementChild.cloneNode(true);
   clonePicture.querySelector('.elements__image')
-  // clonePicture.querySelector('.elements__cell-title').innerText = nameInput.value;
+  clonePicture.querySelector('.elements__cell-title').innerText = i.name;
   const newPicture = clonePicture.querySelector('.elements__image');
   newPicture.setAttribute('src', i.link);
   newPicture.setAttribute('alt', i.name);
