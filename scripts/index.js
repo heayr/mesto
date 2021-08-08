@@ -41,6 +41,17 @@ const picturesFormTemplate = document.querySelector('.template-cards');
 const templateId = document.getElementById('template');
 const container = document.querySelector('.elements');
 const pictureForm = document.querySelector('.popup__form-pic');
+// попап для рекдакции
+const popupEdit = document.querySelector('.profile__edit-button');
+const popupClose = document.querySelector('.popup__close');
+const popupPicClose = document.querySelector('.popup__close_pic');
+const popup = document.querySelector('.popup');
+const formElement = document.querySelector('.popup__form');
+const nameInput = formElement.querySelector('.popup__input_text_name');
+const statusInput = formElement.querySelector('.popup__input_text_status');
+const profileName = document.querySelector('.profile__title');
+const statusChange = document.querySelector('.profile__subtitle');
+
 
 // попап для картинок
 function AddPicture(event) {
@@ -48,20 +59,19 @@ function AddPicture(event) {
   openPopup(popupAddPic);
 }
 
-// типа рабочий код закрывает на кнопку сабмит попап картинки
+// типа рабочий код закрывает на кнопку сабмит попап картинки, остальное
 pictureForm.addEventListener('submit', (event) => {
   event.preventDefault();
   popupPictures.classList.remove('popup_opened');
-  const nameInput = document.querySelector('.popup__input_picture-name').value = '';
-  const urlInput = document.querySelector('.popup__input_picture-link').value = '';
+  // const nameInput = document.querySelector('.popup__input_picture-name').value = '';
+  // const urlInput = document.querySelector('.popup__input_picture-link').value = '';
 })
 
-// функция удаления карточки
+// функция удаления карточки через таргет
 function deletePic(e) {
   e.target.closest('.elements__cell').remove();
-
 }
-
+// функция рендера начальных карточек. отображение Текста не работает
 function initialCardsPrerender(i) {
   const clonePicture = templateId.content.firstElementChild.cloneNode(true);
   clonePicture.querySelector('.elements__image')
@@ -70,8 +80,7 @@ function initialCardsPrerender(i) {
   newPicture.setAttribute('src', i.link);
   newPicture.setAttribute('alt', i.name);
   // nameInput.value = ' ';
-
-  // удаление карточки внутри функции через таргет
+  // удаление карточки снаружи функция deletePic(e)
   clonePicture.querySelector('.elements__delete-button').addEventListener('click', deletePic);
   return clonePicture
 
@@ -80,20 +89,6 @@ function initialCardsPrerender(i) {
 for (const i of initialCards) {
   container.appendChild(initialCardsPrerender(i));
 }
-
-
-// попап для рекдакции
-const popupEdit = document.querySelector('.profile__edit-button');
-const popupClose = document.querySelector('.popup__close');
-const popupPicClose = document.querySelector('.popup__close_pic');
-const popup = document.querySelector('.popup');
-let formElement = document.querySelector('.popup__form');
-let nameInput = formElement.querySelector('.popup__input_text_name');
-let statusInput = formElement.querySelector('.popup__input_text_status');
-let profileName = document.querySelector('.profile__title');
-let statusChange = document.querySelector('.profile__subtitle');
-
-
 
 // Функция открытия popup и копирования данных из титула и подтитула
 
