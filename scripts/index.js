@@ -47,6 +47,9 @@ const picturesFormTemplate = document.querySelector('.template-cards');
 const templateId = document.getElementById('template');
 const container = document.querySelector('.elements');
 const pictureForm = document.querySelector('.popup__form-pic');
+
+
+
 // попап для рекдакции
 const popupEdit = document.querySelector('.profile__edit-button');
 const popupClose = document.querySelector('.popup__close');
@@ -80,21 +83,36 @@ function deletePic(e) {
 // функция рендера начальных карточек.
 function initialCardsPrerender(i) {
   const clonePicture = templateId.content.firstElementChild.cloneNode(true);
-  clonePicture.querySelector('.elements__image')
+
+  clonePicture.querySelector('.elements__image');
   clonePicture.querySelector('.elements__cell-title').innerText = i.name;
   const newPicture = clonePicture.querySelector('.elements__image');
   newPicture.setAttribute('src', i.link);
   newPicture.setAttribute('alt', i.name);
   // nameInput.value = ' ';
+
   // удаление карточки снаружи функция deletePic(e)
   clonePicture.querySelector('.elements__delete-button').addEventListener('click', deletePic);
-  return clonePicture
+  return clonePicture;
 
 };
 
 for (const i of initialCards) {
   container.appendChild(initialCardsPrerender(i));
 }
+
+
+// функция добавления карточки
+
+
+pictureForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const newImage = templateId.content.firstElementChild.cloneNode(true);
+  // debugger
+  newImage.querySelector('.elements__image').innerText = nameInput.value;
+
+  container.prepend(newImage);
+})
 
 // Функция открытия popup и копирования данных из титула и подтитула
 
