@@ -110,6 +110,8 @@ pictureForm.addEventListener('submit', (e) => {
   const newImage = templateId.content.firstElementChild.cloneNode(true);
   // debugger
   newImage.querySelector('.elements__image').innerText = nameInput.value;
+  newImage.querySelector('.elements__delete-button').addEventListener('click', deletePic);
+
 
   container.prepend(newImage);
 })
