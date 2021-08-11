@@ -47,6 +47,9 @@ const picturesFormTemplate = document.querySelector('.template-cards');
 const templateId = document.getElementById('template');
 const container = document.querySelector('.elements');
 const pictureForm = document.querySelector('.popup__form-pic');
+const pictureNameInput = document.querySelector('.popup__input_picture-name');
+const newPictureUrlInput = popupPictures.querySelector('[name="input-picture-link"]');
+const newPictureNameInput = popupPictures.querySelector('[name="input-picture-name"]');
 
 
 
@@ -85,14 +88,15 @@ function initialCardsPrerender(i) {
   const clonePicture = templateId.content.firstElementChild.cloneNode(true);
 
   clonePicture.querySelector('.elements__image');
-  clonePicture.querySelector('.elements__cell-title').innerText = i.name;
+  clonePicture.querySelector('.elements__cell-title').textContent = i.name;
   const newPicture = clonePicture.querySelector('.elements__image');
   newPicture.setAttribute('src', i.link);
   newPicture.setAttribute('alt', i.name);
-  // nameInput.value = ' ';
+
 
   // удаление карточки снаружи функция deletePic(e)
   clonePicture.querySelector('.elements__delete-button').addEventListener('click', deletePic);
+
   return clonePicture;
 
 };
@@ -103,17 +107,34 @@ for (const i of initialCards) {
 
 
 // функция добавления карточки
-
-
 pictureForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const newImage = templateId.content.firstElementChild.cloneNode(true);
-  // debugger
-  newImage.querySelector('.elements__image').innerText = nameInput.value;
+  newImage.querySelector('.elements__image').textContent = pictureNameInput.value;
   newImage.querySelector('.elements__delete-button').addEventListener('click', deletePic);
+  // это тут более не нужно, вызываем в следующей функции
+  // container.prepend(newImage);
+  // возникло дублирование тут!!!!
+})
 
+// чёт до меня долго доходило, что нужно просто представить это как своеобразный
+// массив, и вызывать его можно отдельно вне функции. было дублирование раанее
+function formSubmitPictureFormHandler(evt) {
+  evt.preventDefault();
+  const cardName = newPictureNameInput.value;
+  const cardUrl = newPictureUrlInput.value;
+  const data = {
+    name: cardName,
+    link: cardUrl,
+    alt: cardName
+  };
 
-  container.prepend(newImage);
+  container.prepend(initialCardsPrerender(data));
+}
+//  сюрос формы
+document.addEventListener('submit', (e) => {
+  e.preventDefault();
+  e.target.reset(pictureForm);
 })
 
 // Функция открытия popup и копирования данных из титула и подтитула
@@ -152,6 +173,6 @@ popupAddPic.addEventListener('click', () => openPopup(popupPictures));
 popupClose.addEventListener('click', removePopup);
 popupPicClose.addEventListener('click', removePopupPic);
 formElement.addEventListener('submit', formSubmitHandler);
-
+pictureForm.addEventListener('submit', formSubmitPictureFormHandler);
 
 
