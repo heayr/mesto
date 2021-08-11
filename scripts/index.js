@@ -43,6 +43,7 @@ const initialCards = [
 
 const popupAddPic = document.querySelector('.profile__add-button');
 const popupPictures = document.querySelector('.popup_cards');
+const popupBigPic = document.querySelector('.popup_big');
 const picturesFormTemplate = document.querySelector('.template-cards');
 const templateId = document.getElementById('template');
 const container = document.querySelector('.elements');
@@ -89,9 +90,13 @@ function initialCardsPrerender(i) {
 
   clonePicture.querySelector('.elements__image');
   clonePicture.querySelector('.elements__cell-title').textContent = i.name;
+  clonePicture.querySelector('.elements__cell-like').addEventListener('click', (e) => {
+    e.target.classList.toggle('elements__cell-like_active');
+  })
   const newPicture = clonePicture.querySelector('.elements__image');
   newPicture.setAttribute('src', i.link);
   newPicture.setAttribute('alt', i.name);
+  newPicture.addEventListener('click', onClickImg);
 
 
   // удаление карточки снаружи функция deletePic(e)
@@ -167,11 +172,39 @@ function formSubmitHandler(evt) {
   removePopup(evt);
 }
 
+// попап галлерея
+
+function removePopupBig(e) {
+  e.preventDefault();
+  popupBigPic.classList.remove('popup_opened');
+}
+
+const bigImg = document.querySelector('.popup__img');
+const galleryCapture = document.querySelector('.popup__figcaption');
+// const popupGallery = document.querySelector('.popup_big');
+const closeBig = document.querySelector('.popup__close_big')
+// const popupBigPic = document.querySelector('.popup_big')
+
+function onClickImg(e) {
+  const bigLink = e.target.getAttribute('src');
+  const bigTxt = e.target.getAttribute('alt');
+  bigImg.setAttribute('src', bigLink);
+  bigImg.setAttribute('alt', bigTxt);
+  galleryCapture.textContent = bigTxt;
+  openPopup(popupBigPic);
+}
+
+
+
+
+
+
 // eventListener 'Ы
 popupEdit.addEventListener('click', () => openPopup(popup));
 popupAddPic.addEventListener('click', () => openPopup(popupPictures));
 popupClose.addEventListener('click', removePopup);
 popupPicClose.addEventListener('click', removePopupPic);
+closeBig.addEventListener('click', removePopupBig);
 formElement.addEventListener('submit', formSubmitHandler);
 pictureForm.addEventListener('submit', formSubmitPictureFormHandler);
 

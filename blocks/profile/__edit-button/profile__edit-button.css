@@ -10,7 +10,7 @@
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 @media screen and (max-width: 660px) {
