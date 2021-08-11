@@ -1,11 +1,34 @@
-/* реализовать:
-1. текст в карточках СДЕЛАНО
-2. отображение новых карточек
-3. лайки
-4. открытие попапов картинок
-*/
-// начальные карточки
+// попап для рекдакции
+const popupEdit = document.querySelector('.profile__edit-button');
+const popupClose = document.querySelector('.popup__close');
+const popupPicClose = document.querySelector('.popup__close_pic');
+const popup = document.querySelector('.popup');
+const formElement = document.querySelector('.popup__form');
+const nameInput = formElement.querySelector('.popup__input_text_name');
+const statusInput = formElement.querySelector('.popup__input_text_status');
+const profileName = document.querySelector('.profile__title');
+const statusChange = document.querySelector('.profile__subtitle');
 
+// попап для создания новых карточек
+const popupAddPic = document.querySelector('.profile__add-button');
+const popupPictures = document.querySelector('.popup_cards');
+const popupBigPic = document.querySelector('.popup_big');
+const picturesFormTemplate = document.querySelector('.template-cards');
+const templateId = document.getElementById('template');
+const container = document.querySelector('.elements');
+const pictureForm = document.querySelector('.popup__form-pic');
+const pictureNameInput = document.querySelector('.popup__input_picture-name');
+const newPictureUrlInput = popupPictures.querySelector('[name="input-picture-link"]');
+const newPictureNameInput = popupPictures.querySelector('[name="input-picture-name"]');
+
+// попап больших картинок
+const bigImg = document.querySelector('.popup__img');
+const figcaption = document.querySelector('.popup__figcaption');
+// const popupGallery = document.querySelector('.popup_big');
+const closeBig = document.querySelector('.popup__close_big')
+// const popupBigPic = document.querySelector('.popup_big')
+
+// массив карточек
 const initialCards = [
   {
     name: 'Архыз',
@@ -40,32 +63,6 @@ const initialCards = [
 ];
 
 
-
-const popupAddPic = document.querySelector('.profile__add-button');
-const popupPictures = document.querySelector('.popup_cards');
-const popupBigPic = document.querySelector('.popup_big');
-const picturesFormTemplate = document.querySelector('.template-cards');
-const templateId = document.getElementById('template');
-const container = document.querySelector('.elements');
-const pictureForm = document.querySelector('.popup__form-pic');
-const pictureNameInput = document.querySelector('.popup__input_picture-name');
-const newPictureUrlInput = popupPictures.querySelector('[name="input-picture-link"]');
-const newPictureNameInput = popupPictures.querySelector('[name="input-picture-name"]');
-
-
-
-// попап для рекдакции
-const popupEdit = document.querySelector('.profile__edit-button');
-const popupClose = document.querySelector('.popup__close');
-const popupPicClose = document.querySelector('.popup__close_pic');
-const popup = document.querySelector('.popup');
-const formElement = document.querySelector('.popup__form');
-const nameInput = formElement.querySelector('.popup__input_text_name');
-const statusInput = formElement.querySelector('.popup__input_text_status');
-const profileName = document.querySelector('.profile__title');
-const statusChange = document.querySelector('.profile__subtitle');
-
-
 // попап для картинок
 function AddPicture(event) {
   event.preventDefault();
@@ -76,8 +73,6 @@ function AddPicture(event) {
 pictureForm.addEventListener('submit', (event) => {
   event.preventDefault();
   popupPictures.classList.remove('popup_opened');
-  // const nameInput = document.querySelector('.popup__input_picture-name').value = '';
-  // const urlInput = document.querySelector('.popup__input_picture-link').value = '';
 })
 
 // функция удаления карточки через таргет
@@ -93,23 +88,21 @@ function initialCardsPrerender(i) {
   clonePicture.querySelector('.elements__cell-like').addEventListener('click', (e) => {
     e.target.classList.toggle('elements__cell-like_active');
   })
+
   const newPicture = clonePicture.querySelector('.elements__image');
+
   newPicture.setAttribute('src', i.link);
   newPicture.setAttribute('alt', i.name);
   newPicture.addEventListener('click', onClickImg);
 
-
   // удаление карточки снаружи функция deletePic(e)
   clonePicture.querySelector('.elements__delete-button').addEventListener('click', deletePic);
-
   return clonePicture;
-
 };
-
+// перебор массива
 for (const i of initialCards) {
   container.appendChild(initialCardsPrerender(i));
 }
-
 
 // функция добавления карточки
 pictureForm.addEventListener('submit', (e) => {
@@ -119,7 +112,7 @@ pictureForm.addEventListener('submit', (e) => {
   newImage.querySelector('.elements__delete-button').addEventListener('click', deletePic);
   // это тут более не нужно, вызываем в следующей функции
   // container.prepend(newImage);
-  // возникло дублирование тут!!!!
+  // возникало дублирование тут!!!!
 })
 
 // чёт до меня долго доходило, что нужно просто представить это как своеобразный
@@ -143,7 +136,6 @@ document.addEventListener('submit', (e) => {
 })
 
 // Функция открытия popup и копирования данных из титула и подтитула
-
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
@@ -151,18 +143,15 @@ function openPopup(popup) {
 nameInput.value = profileName.textContent;
 statusInput.value = statusChange.textContent;
 
-// Функция закрытия popup
-
+// Функции закрытия popup
 function removePopup(event) {
   event.stopPropagation();
   popup.classList.remove('popup_opened')
 }
-
 function removePopupPic(popup_cards) {
   popup_cards.stopPropagation();
   popupPictures.classList.remove('popup_opened');
 }
-
 // save and close of popup info
 function formSubmitHandler(evt) {
   evt.preventDefault();
@@ -172,32 +161,21 @@ function formSubmitHandler(evt) {
   removePopup(evt);
 }
 
-// попап галлерея
-
 function removePopupBig(e) {
   e.preventDefault();
   popupBigPic.classList.remove('popup_opened');
 }
 
-const bigImg = document.querySelector('.popup__img');
-const galleryCapture = document.querySelector('.popup__figcaption');
-// const popupGallery = document.querySelector('.popup_big');
-const closeBig = document.querySelector('.popup__close_big')
-// const popupBigPic = document.querySelector('.popup_big')
 
+// попап большие картинки
 function onClickImg(e) {
   const bigLink = e.target.getAttribute('src');
   const bigTxt = e.target.getAttribute('alt');
   bigImg.setAttribute('src', bigLink);
   bigImg.setAttribute('alt', bigTxt);
-  galleryCapture.textContent = bigTxt;
+  figcaption.textContent = bigTxt;
   openPopup(popupBigPic);
 }
-
-
-
-
-
 
 // eventListener 'Ы
 popupEdit.addEventListener('click', () => openPopup(popup));
