@@ -101,16 +101,17 @@ function formSubmitPictureFormHandler(evt) {
     link: cardUrl,
     alt: cardName
   };
-  container.prepend(createCard(data));
-}
-
-//  сброс формы
-document.addEventListener('submit', (e) => {
-  e.preventDefault();
+  //  сброс формы теперь внутри основной функции т.е. локально
   pictureForm.reset();
   // при закрытии важно не только вызвать функцию, но и выбрать, что закрывать в скобках
   closePopup(popupPictures)
-})
+  // создаёт новую карточку перед уже созданными
+  container.prepend(createCard(data));
+}
+
+
+
+// })
 // лучшая версия сброса формы.
 // да, я честно-говоря хотел так написать изначально, но она не работала, сейчас работает - магия...
 
