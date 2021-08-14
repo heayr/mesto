@@ -1,18 +1,18 @@
-// попап для рекдакции
+// попап для редакции
 const popupEdit = document.querySelector('.profile__edit-button');
-const popupClose = document.querySelector('.popup__close');
+const closingButtons = document.querySelectorAll('.popup__close');
 const popupPicClose = document.querySelector('.popup__close_pic');
 const popup = document.querySelector('.popup');
 const formElement = document.querySelector('.popup__form');
-const nameInput = formElement.querySelector('.popup__input_text_name');
-const statusInput = formElement.querySelector('.popup__input_text_status');
+const nameInput = formElement.querySelector('.popup__input_text-name');
+const statusInput = formElement.querySelector('.popup__input_text-status');
 const profileName = document.querySelector('.profile__title');
 const statusChange = document.querySelector('.profile__subtitle');
 
 // попап для создания новых карточек
 const popupAddPic = document.querySelector('.profile__add-button');
 const popupPictures = document.querySelector('.popup_cards');
-const popupBigPic = document.querySelector('.popup_big');
+const popupBigPic = document.querySelector('.popup-big');
 const picturesFormTemplate = document.querySelector('.template-cards');
 const templateId = document.getElementById('template');
 const container = document.querySelector('.elements');
@@ -24,9 +24,7 @@ const newPictureNameInput = popupPictures.querySelector('[name="input-picture-na
 // попап больших картинок
 const bigImg = document.querySelector('.popup__img');
 const figcaption = document.querySelector('.popup__figcaption');
-// const popupGallery = document.querySelector('.popup_big');
-const closeBig = document.querySelector('.popup__close_big')
-// const popupBigPic = document.querySelector('.popup_big')
+const closeBig = document.querySelector('.popup__close-big')
 
 // массив карточек
 const initialCards = [
@@ -62,61 +60,38 @@ const initialCards = [
   }
 ];
 
-
-// попап для картинок
-function AddPicture(event) {
-  event.preventDefault();
-  openPopup(popupAddPic);
-}
-
-// типа рабочий код закрывает на кнопку SUBMIT попап картинки, остальное
-pictureForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  popupPictures.classList.remove('popup_opened');
-})
-
 // функция удаления карточки через таргет
 function deletePic(e) {
   e.target.closest('.elements__cell').remove();
 }
 // функция рендера начальных карточек.
-function initialCardsPrerender(i) {
+function createCard(i) {
   const clonePicture = templateId.content.firstElementChild.cloneNode(true);
-
-  clonePicture.querySelector('.elements__image');
   clonePicture.querySelector('.elements__cell-title').textContent = i.name;
   clonePicture.querySelector('.elements__cell-like').addEventListener('click', (e) => {
     e.target.classList.toggle('elements__cell-like_active');
   })
 
   const newPicture = clonePicture.querySelector('.elements__image');
+  // краткая запись атрибутов
+  newPicture.src = i.link;
+  newPicture.alt = i.name;
 
-  newPicture.setAttribute('src', i.link);
-  newPicture.setAttribute('alt', i.name);
   newPicture.addEventListener('click', onClickImg);
 
-  // удаление карточки снаружи функция deletePic(e)
+  // удаление карточки снаружи функция - deletePic(e)
   clonePicture.querySelector('.elements__delete-button').addEventListener('click', deletePic);
   return clonePicture;
 };
+
 // перебор массива
 for (const i of initialCards) {
-  container.appendChild(initialCardsPrerender(i));
+  container.appendChild(createCard(i));
 }
 
-// функция добавления карточки
-pictureForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const newImage = templateId.content.firstElementChild.cloneNode(true);
-  newImage.querySelector('.elements__image').textContent = pictureNameInput.value;
-  newImage.querySelector('.elements__delete-button').addEventListener('click', deletePic);
-  // это тут более не нужно, вызываем в следующей функции
-  // container.prepend(newImage);
-  // возникало дублирование тут!!!!
-})
 
 // чёт до меня долго доходило, что нужно просто представить это как своеобразный
-// массив, и вызывать его можно отдельно вне функции. было дублирование раанее
+// массив, и вызывать его можно отдельно вне функции. было дублирование ранее
 function formSubmitPictureFormHandler(evt) {
   evt.preventDefault();
   const cardName = newPictureNameInput.value;
@@ -126,46 +101,50 @@ function formSubmitPictureFormHandler(evt) {
     link: cardUrl,
     alt: cardName
   };
-
-  container.prepend(initialCardsPrerender(data));
+  container.prepend(createCard(data));
 }
-//  сюрос формы
+
+//  сброс формы
 document.addEventListener('submit', (e) => {
   e.preventDefault();
-  e.target.reset(pictureForm);
+  pictureForm.reset();
+  // при закрытии важно не только вызвать функцию, но и выбрать, что закрывать в скобках
+  closePopup(popupPictures)
 })
+// лучшая версия сброса формы.
+// да, я честно-говоря хотел так написать изначально, но она не работала, сейчас работает - магия...
 
-// Функция открытия popup и копирования данных из титула и подтитула
+
+//  этоооооооооооооооооооо
+
+
+
+// Функция открытия popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
-nameInput.value = profileName.textContent;
-statusInput.value = statusChange.textContent;
+// функция закрытия попапов на крестик, кнопки выбираются автоматически
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
 
-// Функции закрытия popup
-function removePopup(event) {
-  event.stopPropagation();
-  popup.classList.remove('popup_opened')
+function onClickClosePopup(evt) {
+  closePopup(evt.target.closest('.popup'));
 }
-function removePopupPic(popup_cards) {
-  popup_cards.stopPropagation();
-  popupPictures.classList.remove('popup_opened');
+function onClickEdit() {
+  nameInput.value = profileName.textContent;
+  statusInput.value = statusChange.textContent;
+  openPopup(popup);
 }
+
 // save and close of popup info
 function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   statusChange.textContent = statusInput.value;
-  popup.classList.remove('popup_opened');
-  removePopup(evt);
+  closePopup(popup);
 }
-
-function removePopupBig(e) {
-  e.preventDefault();
-  popupBigPic.classList.remove('popup_opened');
-}
-
 
 // попап большие картинки
 function onClickImg(e) {
@@ -177,13 +156,32 @@ function onClickImg(e) {
   openPopup(popupBigPic);
 }
 
-// eventListener 'Ы
-popupEdit.addEventListener('click', () => openPopup(popup));
+// eventListener'Ы
+// popupEdit.addEventListener('click', () => openPopup(popup));
+popupEdit.addEventListener('click', onClickEdit);
+
 popupAddPic.addEventListener('click', () => openPopup(popupPictures));
-popupClose.addEventListener('click', removePopup);
-popupPicClose.addEventListener('click', removePopupPic);
-closeBig.addEventListener('click', removePopupBig);
 formElement.addEventListener('submit', formSubmitHandler);
 pictureForm.addEventListener('submit', formSubmitPictureFormHandler);
+closingButtons.forEach(button => button.addEventListener('click', onClickClosePopup));
 
 
+
+
+
+
+
+
+
+
+
+// более не нужно т.к выполняется этим function formSubmitPictureFormHandler(evt) {
+// функция добавления карточки
+// pictureForm.addEventListener('submit', (e) => {
+//   e.preventDefault();
+//   const newImage = templateId.content.firstElementChild.cloneNode(true);
+//   newImage.querySelector('.elements__image').textContent = pictureNameInput.value;
+//   newImage.querySelector('.elements__delete-button').addEventListener('click', deletePic);
+//   /* это тут более не нужно, вызываем в следующей функции
+//   container.prepend(newImage);   <---- возникало дублирование тут т.к. создаёт ещё одну пустую карту!!!! */
+// })
