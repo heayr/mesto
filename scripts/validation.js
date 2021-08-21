@@ -1,3 +1,4 @@
+// Я сделал валидацию по вебинару, видимо пойду ночью писать по тренажеру второй вариант.
 
 const formUser = document.forms.user;
 const formAddCard = document.forms.card;

@@ -27,6 +27,11 @@ const bigImg = document.querySelector('.popup__img');
 const figcaption = document.querySelector('.popup__figcaption');
 const closeBig = document.querySelector('.popup__close-big')
 
+// закрытие попапов мышкой
+const allPopups = document.querySelectorAll('.popup');
+const AllPopupContainers = document.querySelectorAll('.popup__container');
+
+
 // массив карточек
 const initialCards = [
   {
@@ -116,12 +121,13 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.getElementById("submit").disabled = true;
   document.getElementById("submit").classList.add('popup__submit_disabled');
-  // buttonCard.classList.add('popup__input_invalid');
+  document.addEventListener("keydown", onEscapeKey);
 }
 
 // функция закрытия попапов на крестик, кнопки выбираются автоматически благодаря функции onClickClosePopup
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener("keydown", onEscapeKey);
 }
 
 function onClickClosePopup(evt) {
@@ -141,6 +147,29 @@ function formSubmitHandler(evt) {
   statusChange.textContent = statusInput.value;
   closePopup(popup);
 }
+
+//Закрытие popup кнопкой Escape
+function onEscapeKey(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    if (openedPopup) {
+      closePopup(openedPopup);
+    }
+  }
+}
+
+// Не позволяет закрывать popup внутри контейнера popup
+AllPopupContainers.forEach((doNotClose) => {
+  doNotClose.addEventListener('click', (evt) => {
+    evt.stopPropagation();
+  });
+})
+
+
+// Закрытие popup мышкой
+allPopups.forEach((popup) => {
+  popup.addEventListener('click', onClickClosePopup);
+})
 
 // попап большие картинки
 function onClickImg(e) {
@@ -162,7 +191,11 @@ pictureForm.addEventListener('submit', formSubmitPictureFormHandler);
 //листнер+функция внутри него, которая выбирает все кнопки close в document с параметром closest к popup - гениально
 closingButtons.forEach(button => button.addEventListener('click', onClickClosePopup));
 
-
+// document.addEventListener('mousedown', function (e) {
+//   if (e.target.closest('.popup') === null) {
+//     popup.style.visability = 'hidden';
+//   }
+// });
 
 
 
