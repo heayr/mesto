@@ -24,7 +24,6 @@
               <p class="profile__subtitle">Исследователь океана</p>
             </div>
             <!-- кнопка редактировать -->
-
             <button class="profile__edit-button" type="button"></button>
           </div>
         </div>
@@ -40,25 +39,34 @@
     <footer class="footer">
       <p class="footer__title">© 2021 Mesto Russia</p>
     </footer>
-    <!-- попап для редактирования -->
+    <!-- попап для редактирования имени, статуса-->
     <div class="popup" id="popup">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
-        <form class="popup__form" name="profile-form">
+        <form class="popup__form" name="user" novalidate>
           <h2 class="popup__title">Редактировать профиль</h2>
           <input
-            class="popup__input popup__input_text-name"
+            id="user-name"
+            class="popup__input popup__input_text-name popup__input_invalid"
             type="text"
             value=""
             name="input-name"
             required
+            minlength="2"
+            maxlength="40"
           />
+          <span id="user-name-error" class="popup__error"></span>
           <input
-            class="popup__input popup__input_text-status"
+            id="status-name"
+            class="popup__input popup__input_text-status popup__input_invalid"
             type="text"
             name="input-status"
             value=""
+            required
+            minlength="2"
+            maxlength="200"
           />
+          <span id="status-name-error" class="popup__error"></span>
           <button class="popup__submit" type="submit">Сохранить</button>
         </form>
       </div>
@@ -67,24 +75,30 @@
     <div class="popup popup_cards" id="popup_cards">
       <div class="popup__container">
         <button class="popup__close popup__close_pic" type="button"></button>
-        <form class="popup__form popup__form-pic" name="picture-form">
+        <form class="popup__form popup__form-pic" name="card" novalidate>
           <h2 class="popup__title popup__title_picture">Новое место</h2>
           <input
-            class="popup__input popup__input_picture-name"
+            id="picture-name"
+            class="popup__input popup__input_picture-name popup__input_invalid"
             type="text"
             value=""
             placeholder="Название"
             required
             name="input-picture-name"
+            minlength="2"
+            maxlength="30"
           />
+          <span id="picture-name-error" class="popup__error"></span>
           <input
-            class="popup__input popup__input_picture-link"
-            type="text"
+            id="url"
+            class="popup__input popup__input_picture-link popup__input_invalid"
+            type="url"
             name="input-picture-link"
             required
             placeholder="Ссылка на картинку"
             value=""
           />
+          <span id="url-error" class="popup__error"></span>
           <button
             class="popup__submit popup__submit-pic"
             id="submit"
@@ -115,5 +129,6 @@
       </li>
     </template>
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validation.js" defer></script>
   </body>
 </html>

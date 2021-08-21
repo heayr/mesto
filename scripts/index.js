@@ -91,7 +91,7 @@ for (const i of initialCards) {
 
 
 // чёт до меня долго доходило, что нужно просто представить это как своеобразный
-// массив, и вызывать его можно отдельно вне функции. было дублирование ранее
+// массив, и вызывать его можно отдельно вне функции createCard. было дублирование ранее
 function formSubmitPictureFormHandler(evt) {
   evt.preventDefault();
   const cardName = newPictureNameInput.value;
@@ -110,22 +110,12 @@ function formSubmitPictureFormHandler(evt) {
 }
 
 
-
-// })
-// лучшая версия сброса формы.
-// да, я честно-говоря хотел так написать изначально, но она не работала, сейчас работает - магия...
-
-
-//  этоооооооооооооооооооо
-
-
-
 // Функция открытия popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
-// функция закрытия попапов на крестик, кнопки выбираются автоматически
+// функция закрытия попапов на крестик, кнопки выбираются автоматически благодаря функции onClickClosePopup
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
@@ -133,6 +123,7 @@ function closePopup(popup) {
 function onClickClosePopup(evt) {
   closePopup(evt.target.closest('.popup'));
 }
+
 function onClickEdit() {
   nameInput.value = profileName.textContent;
   statusInput.value = statusChange.textContent;
@@ -157,13 +148,14 @@ function onClickImg(e) {
   openPopup(popupBigPic);
 }
 
+
 // eventListener'Ы
 // popupEdit.addEventListener('click', () => openPopup(popup));
 popupEdit.addEventListener('click', onClickEdit);
-
 popupAddPic.addEventListener('click', () => openPopup(popupPictures));
 formElement.addEventListener('submit', formSubmitHandler);
 pictureForm.addEventListener('submit', formSubmitPictureFormHandler);
+//листнер+функция внутри него, которая выбирает все кнопки close в document с параметром closest к popup - гениально
 closingButtons.forEach(button => button.addEventListener('click', onClickClosePopup));
 
 
