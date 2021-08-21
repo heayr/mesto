@@ -1,12 +1,12 @@
-// Я сделал валидацию по вебинару, видимо пойду ночью писать по тренажеру второй вариант.
-
+/* Я сделал валидацию по вебинару, видимо пойду ночью писать по тренажеру второй вариант.
+Хотя она вообще вполне рабочая xD*/
 const formUser = document.forms.user;
 const formAddCard = document.forms.card;
-
+// массив сообщений об ошибках, в будущем можно будет добавить кастомных
 const errorMessage = {
   empty: "Вы пропустили это поле.",
 }
-
+// проверка валидности инпута
 function isFieldValid(input) {
   input.setCustomValidity("");
 
@@ -15,10 +15,9 @@ function isFieldValid(input) {
 
     return false;
   }
-
   return input.checkValidity();
 }
-
+// написание ошибки под инпутом родителем контретного ID-шника
 function validateField(input) {
   const errorElement = input.parentNode.querySelector(`#${input.id}-error`);
 
@@ -26,7 +25,7 @@ function validateField(input) {
 
   errorElement.innerText = input.validationMessage;
 }
-
+// тогл переключения состояния кнопки
 function setSubmitButtonState(button, state) {
   if (state) {
     button.removeAttribute('disabled');
@@ -54,7 +53,7 @@ function handlerInputForm(event) {
 
   }
 }
-
+// отправка формы в консоль
 function sendForm(event) {
   event.preventDefault();
   const form = event.currentTarget;
@@ -66,22 +65,7 @@ function sendForm(event) {
     console.log('Форма не заполнена');
   }
 }
-
-
-
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.form'));
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
-    const fieldsetList = Array.from(formElement.querySelectorAll('.form__set'));
-    fieldsetList.forEach((fieldSet) => {
-      setEventListeners(fieldSet);
-    });
-  });
-};
-
+// eventListner 'Ы
 formAddCard.addEventListener('submit', sendForm);
 formAddCard.addEventListener('input', handlerInputForm, true);
 
