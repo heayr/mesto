@@ -20,6 +20,7 @@ const pictureForm = document.querySelector('.popup__form-pic');
 const pictureNameInput = document.querySelector('.popup__input_picture-name');
 const newPictureUrlInput = popupPictures.querySelector('[name="input-picture-link"]');
 const newPictureNameInput = popupPictures.querySelector('[name="input-picture-name"]');
+const buttonCard = document.querySelector('.popup__submit-pic');
 
 // попап больших картинок
 const bigImg = document.querySelector('.popup__img');
@@ -113,6 +114,9 @@ function formSubmitPictureFormHandler(evt) {
 // Функция открытия popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.getElementById("submit").disabled = true;
+  document.getElementById("submit").classList.add('popup__submit_disabled');
+  // buttonCard.classList.add('popup__input_invalid');
 }
 
 // функция закрытия попапов на крестик, кнопки выбираются автоматически благодаря функции onClickClosePopup

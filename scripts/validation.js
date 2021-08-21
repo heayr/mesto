@@ -66,6 +66,21 @@ function sendForm(event) {
   }
 }
 
+
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('.form'));
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    });
+    const fieldsetList = Array.from(formElement.querySelectorAll('.form__set'));
+    fieldsetList.forEach((fieldSet) => {
+      setEventListeners(fieldSet);
+    });
+  });
+};
+
 formAddCard.addEventListener('submit', sendForm);
 formAddCard.addEventListener('input', handlerInputForm, true);
 
