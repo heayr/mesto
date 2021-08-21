@@ -9,5 +9,12 @@
   color: red;
   width: 100%;
   max-width: 355px;
-  margin: 5px 0 0 34px;
+  margin: 5px 0 10px 34px;
+}
+
+@media screen and (max-width: 550px) {
+  .popup__error {
+    width: 238px;
+    margin: 0px 0 15px 20px;
+  }
 }
