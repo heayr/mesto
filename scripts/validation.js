@@ -100,11 +100,7 @@ const checkInputValidity = (formElement, inputElement) => {
   }
 };
 
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  })
-}
+
 
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
@@ -114,6 +110,12 @@ const toggleButtonState = (inputList, buttonElement) => {
     buttonElement.classList.remove('popup__submit_disabled');
     buttonElement.removeAttribute('disabled');
   }
+}
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  })
 }
 
 function setEventListeners(formElement) {
