@@ -34,6 +34,11 @@ const allPopups = document.querySelectorAll('.popup');
 const AllPopupContainers = document.querySelectorAll('.popup__container');
 
 
+
+
+
+
+
 // массив карточек
 const initialCards = [
   {
@@ -174,10 +179,15 @@ AllPopupContainers.forEach((doNotClose) => {
 })
 
 
+//блокировка Закрытия popup__img кликом по картинке
+bigImg.addEventListener('click', (evt) => {
+  evt.stopPropagation();
+});
+
 // Закрытие popup мышкой
 allPopups.forEach((popup) => {
   popup.addEventListener('click', onClickClosePopup);
-})
+});
 
 // попап большие картинки
 function onClickImg(e) {
