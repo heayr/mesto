@@ -1,5 +1,5 @@
 /* Я сделал валидацию по вебинару, видимо пойду ночью писать по тренажеру второй вариант.
-Хотя она вообще вполне рабочая xD*/
+Хотя она вообще вполне рабочая xD
 const formUser = document.forms.user;
 const formAddCard = document.forms.card;
 // массив сообщений об ошибках, в будущем можно будет добавить кастомных
@@ -72,3 +72,69 @@ formAddCard.addEventListener('input', handlerInputForm, true);
 formUser.addEventListener('submit', sendForm);
 formUser.addEventListener('input', handlerInputForm, true);
 
+*/
+const form = document.querySelector('.popup__form');
+const formInput = formElement.querySelector('.popup__input');
+const formError = formElement.querySelector(`.${formInput.id}-error`);
+
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+
+  inputElement.classList.add('popup__input_type_error');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('form__input-error_active');
+};
+
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  inputElement.classList.remove('popup__input_type_error');
+  errorElement.classList.remove('form__input-error_active');
+  errorElement.textContent = '';
+};
+
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+
+function setEventListeners(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function () {
+      checkInputValidity(formElement, inputElement);
+    });
+  });
+}
+setEventListeners(form);
+
+
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('.popup'));
+
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    });
+    setEventListeners(formElement);
+  })
+}
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+});
+//  eventListenerS for VALIDATTION
+form.addEventListener('submit', function (evt) {
+  evt.preventDefault();
+});
+
+formInput.addEventListener('input', () => {
+  checkInputValidity(form, formInput);
+});

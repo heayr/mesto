@@ -1,9 +1,11 @@
+// переменные для валидации!!!
+const formElement = document.querySelector('.popup__form');
+
 // попап для редакции
 const popupEdit = document.querySelector('.profile__edit-button');
 const closingButtons = document.querySelectorAll('.popup__close');
 const popupPicClose = document.querySelector('.popup__close_pic');
 const popup = document.querySelector('.popup');
-const formElement = document.querySelector('.popup__form');
 const nameInput = formElement.querySelector('.popup__input_text-name');
 const statusInput = formElement.querySelector('.popup__input_text-status');
 const profileName = document.querySelector('.profile__title');
@@ -116,11 +118,17 @@ function formSubmitPictureFormHandler(evt) {
 }
 
 
+// 'эта полурабочая функция не будет нужна если написать код по тренажеру 1!!!!!
+// function buttonDisable() {
+//   document.getElementById("submit").disabled = true;
+//   document.getElementById("submit").classList.add('popup__submit_disabled');
+// }
+
 // Функция открытия popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.getElementById("submit").disabled = true;
-  document.getElementById("submit").classList.add('popup__submit_disabled');
+  // document.getElementById("submit").disabled = true;
+  // document.getElementById("submit").classList.add('popup__submit_disabled');
   document.addEventListener("keydown", onEscapeKey);
 }
 
@@ -186,6 +194,7 @@ function onClickImg(e) {
 // popupEdit.addEventListener('click', () => openPopup(popup));
 popupEdit.addEventListener('click', onClickEdit);
 popupAddPic.addEventListener('click', () => openPopup(popupPictures));
+// buttonCard.addEventListener('click', () => buttonDisable());
 formElement.addEventListener('submit', formSubmitHandler);
 pictureForm.addEventListener('submit', formSubmitPictureFormHandler);
 //листнер+функция внутри него, которая выбирает все кнопки close в document с параметром closest к popup - гениально
@@ -215,3 +224,4 @@ closingButtons.forEach(button => button.addEventListener('click', onClickClosePo
 //   /* это тут более не нужно, вызываем в следующей функции
 //   container.prepend(newImage);   <---- возникало дублирование тут т.к. создаёт ещё одну пустую карту!!!! */
 // })
+
