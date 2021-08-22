@@ -3,6 +3,7 @@
 const formUser = document.forms.user;
 const formAddCard = document.forms.card;
 // массив сообщений об ошибках, в будущем можно будет добавить кастомных
+
 const errorMessage = {
   empty: "Вы пропустили это поле.",
 }
@@ -73,9 +74,7 @@ formUser.addEventListener('submit', sendForm);
 formUser.addEventListener('input', handlerInputForm, true);
 
 */
-const form = document.querySelector('.popup__form');
-const formInput = formElement.querySelector('.popup__input');
-const formError = formElement.querySelector(`.${formInput.id}-error`);
+
 
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
@@ -131,12 +130,12 @@ function setEventListeners(formElement) {
     });
   });
 }
-setEventListeners(form);
+
 
 
 
 const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.popup'));
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
 
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
@@ -154,11 +153,4 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 });
-//  eventListenerS for VALIDATTION
-form.addEventListener('submit', function (evt) {
-  evt.preventDefault();
-});
 
-formInput.addEventListener('input', () => {
-  checkInputValidity(form, formInput);
-});
