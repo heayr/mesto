@@ -119,16 +119,16 @@ function formSubmitPictureFormHandler(evt) {
 
 
 // 'эта полурабочая функция не будет нужна если написать код по тренажеру 1!!!!!
-function buttonDisable() {
-  document.getElementById("submit").disabled = true;
-  document.getElementById("submit").classList.add('popup__submit_disabled');
-}
+
+// function buttonDisable() {
+//   document.getElementById("submit").disabled = true;
+//   document.getElementById("submit").classList.add('popup__submit_disabled');
+// }
 
 // Функция открытия popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  // document.getElementById("submit").disabled = true;
-  // document.getElementById("submit").classList.add('popup__submit_disabled');
+  // buttonDisable()
   document.addEventListener("keydown", onEscapeKey);
 }
 
@@ -194,7 +194,7 @@ function onClickImg(e) {
 // popupEdit.addEventListener('click', () => openPopup(popup));
 popupEdit.addEventListener('click', onClickEdit);
 popupAddPic.addEventListener('click', () => openPopup(popupPictures));
-buttonCard.addEventListener('click', () => buttonDisable());
+// buttonCard.addEventListener('click', () => buttonDisable());
 formElement.addEventListener('submit', formSubmitHandler);
 pictureForm.addEventListener('submit', formSubmitPictureFormHandler);
 //листнер+функция внутри него, которая выбирает все кнопки close в document с параметром closest к popup - гениально
