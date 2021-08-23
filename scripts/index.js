@@ -119,6 +119,7 @@ function formSubmitPictureFormHandler(evt) {
   // создаёт новую карточку перед уже созданными
   container.prepend(createCard(data));
 }
+
 // Функция отключения кнопки
 function buttonDisableWhenOpened(popupAddPic) {
   disabledButton.classList.add('popup__submit_disabled');
@@ -197,37 +198,12 @@ function onClickImg(e) {
 
 
 // eventListener'Ы
-// popupEdit.addEventListener('click', () => openPopup(popup));
+
 popupEdit.addEventListener('click', onClickEdit);
 popupAddPic.addEventListener('click', () => openPopup(popupPictures));
-// buttonCard.addEventListener('click', () => buttonDisable());
+
 formElement.addEventListener('submit', formSubmitHandler);
 pictureForm.addEventListener('submit', formSubmitPictureFormHandler);
 //листнер+функция внутри него, которая выбирает все кнопки close в document с параметром closest к popup - гениально
 closingButtons.forEach(button => button.addEventListener('click', onClickClosePopup));
 popupAddPic.addEventListener('click', () => buttonDisableWhenOpened(popupPictures));
-
-// document.addEventListener('mousedown', function (e) {
-//   if (e.target.closest('.popup') === null) {
-//     popup.style.visability = 'hidden';
-//   }
-// });
-
-
-
-
-
-
-
-
-
-// более не нужно т.к выполняется этим function formSubmitPictureFormHandler(evt) {
-// функция добавления карточки
-// pictureForm.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   const newImage = templateId.content.firstElementChild.cloneNode(true);
-//   newImage.querySelector('.elements__image').textContent = pictureNameInput.value;
-//   newImage.querySelector('.elements__delete-button').addEventListener('click', deletePic);
-//   /* это тут более не нужно, вызываем в следующей функции
-//   container.prepend(newImage);   <---- возникало дублирование тут т.к. создаёт ещё одну пустую карту!!!! */
-// })
