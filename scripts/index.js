@@ -33,11 +33,8 @@ const closeBig = document.querySelector('.popup__close-big')
 const allPopups = document.querySelectorAll('.popup');
 const AllPopupContainers = document.querySelectorAll('.popup__container');
 
-
-
-
-
-
+// переменная кнопки для отключения её в форме т.к. найти её нужно 1 раз!
+const disabledButton = popupPictures.querySelector('.popup__submit');
 
 // массив карточек
 const initialCards = [
@@ -117,18 +114,17 @@ function formSubmitPictureFormHandler(evt) {
   //  сброс формы теперь внутри основной функции т.е. локально
   pictureForm.reset();
   // при закрытии важно не только вызвать функцию, но и выбрать, что закрывать в скобках
-  closePopup(popupPictures)
+  closePopup(popupPictures);
+
   // создаёт новую карточку перед уже созданными
   container.prepend(createCard(data));
 }
-
-
-// 'эта полурабочая функция не будет нужна если написать код по тренажеру 1!!!!!
-
-// function buttonDisable() {
-//   document.getElementById("submit").disabled = true;
-//   document.getElementById("submit").classList.add('popup__submit_disabled');
-// }
+// Функция отключения кнопки
+// хоспаде боже иисус господь - господь, я придумал эту дичь и она РАБОТАЕТ
+function buttonDisableWhenOpened(popupAddPic) {
+  disabledButton.classList.add('popup__submit_disabled');
+  disabledButton.setAttribute('disabled', true);
+}
 
 // Функция открытия popup
 function openPopup(popup) {
@@ -152,6 +148,7 @@ function onClickEdit() {
   statusInput.value = statusChange.textContent;
   openPopup(popup);
 }
+
 
 // save and close of popup info
 function formSubmitHandler(evt) {
@@ -209,6 +206,7 @@ formElement.addEventListener('submit', formSubmitHandler);
 pictureForm.addEventListener('submit', formSubmitPictureFormHandler);
 //листнер+функция внутри него, которая выбирает все кнопки close в document с параметром closest к popup - гениально
 closingButtons.forEach(button => button.addEventListener('click', onClickClosePopup));
+popupAddPic.addEventListener('click', () => buttonDisableWhenOpened(popupPictures));
 
 // document.addEventListener('mousedown', function (e) {
 //   if (e.target.closest('.popup') === null) {
@@ -234,4 +232,3 @@ closingButtons.forEach(button => button.addEventListener('click', onClickClosePo
 //   /* это тут более не нужно, вызываем в следующей функции
 //   container.prepend(newImage);   <---- возникало дублирование тут т.к. создаёт ещё одну пустую карту!!!! */
 // })
-
