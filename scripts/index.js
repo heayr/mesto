@@ -120,7 +120,6 @@ function formSubmitPictureFormHandler(evt) {
   container.prepend(createCard(data));
 }
 // Функция отключения кнопки
-// хоспаде боже иисус господь - господь, я придумал эту дичь и она РАБОТАЕТ
 function buttonDisableWhenOpened(popupAddPic) {
   disabledButton.classList.add('popup__submit_disabled');
   disabledButton.setAttribute('disabled', true);
