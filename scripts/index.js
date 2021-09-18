@@ -1,3 +1,7 @@
+
+import { Card } from "./Card.js";
+
+
 // переменные для валидации!!!
 const formElement = document.querySelector('.popup__form');
 
@@ -36,44 +40,8 @@ const AllPopupContainers = document.querySelectorAll('.popup__container');
 // переменная кнопки для отключения её в форме т.к. найти её нужно 1 раз!
 const disabledButton = popupPictures.querySelector('.popup__submit');
 
-// массив карточек
-const initialCards = [
-  {
-    name: 'Архыз',
-    link:
-      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link:
-      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link:
-      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link:
-      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link:
-      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link:
-      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
-// функция удаления карточки через таргет
-function deletePic(e) {
-  e.target.closest('.elements__cell').remove();
-}
+/*
 // функция рендера начальных карточек.
 function createCard(i) {
   const clonePicture = templateId.content.firstElementChild.cloneNode(true);
@@ -90,15 +58,16 @@ function createCard(i) {
   newPicture.addEventListener('click', onClickImg);
 
   // удаление карточки снаружи функция - deletePic(e)
-  clonePicture.querySelector('.elements__delete-button').addEventListener('click', deletePic);
+  // clonePicture.querySelector('.elements__delete-button').addEventListener('click', deletePic);
   return clonePicture;
 };
 
-// перебор массива
-for (const i of initialCards) {
-  container.appendChild(createCard(i));
-}
+*/
 
+// перебор массива
+// for (const i of initialCards) {
+//   container.appendChild(createCard(i));
+// }
 
 // чёт до меня долго доходило, что нужно просто представить это как своеобразный
 // массив, и вызывать его можно отдельно вне функции createCard. было дублирование ранее
@@ -120,6 +89,10 @@ function formSubmitPictureFormHandler(evt) {
   container.prepend(createCard(data));
 }
 
+function createCard(link, title) {
+  return (new Card(link, title, templateId)).generateCard();
+}
+
 // Функция отключения кнопки
 function buttonDisableWhenOpened(popupAddPic) {
   disabledButton.classList.add('popup__submit_disabled');
@@ -129,7 +102,6 @@ function buttonDisableWhenOpened(popupAddPic) {
 // Функция открытия popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  // buttonDisable()
   document.addEventListener("keydown", onEscapeKey);
 }
 
@@ -195,7 +167,7 @@ function onClickImg(e) {
   figcaption.textContent = bigTxt;
   openPopup(popupBigPic);
 }
-
+export { onClickImg };
 
 // eventListener'Ы
 
@@ -207,3 +179,5 @@ pictureForm.addEventListener('submit', formSubmitPictureFormHandler);
 //листнер+функция внутри него, которая выбирает все кнопки close в document с параметром closest к popup - гениально
 closingButtons.forEach(button => button.addEventListener('click', onClickClosePopup));
 popupAddPic.addEventListener('click', () => buttonDisableWhenOpened(popupPictures));
+
+
