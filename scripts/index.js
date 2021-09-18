@@ -75,23 +75,24 @@ function formSubmitPictureFormHandler(evt) {
   evt.preventDefault();
   const cardName = newPictureNameInput.value;
   const cardUrl = newPictureUrlInput.value;
-  const data = {
+  /*const data = {
     name: cardName,
     link: cardUrl,
     alt: cardName
-  };
+  };*/
   //  сброс формы теперь внутри основной функции т.е. локально
   pictureForm.reset();
   // при закрытии важно не только вызвать функцию, но и выбрать, что закрывать в скобках
   closePopup(popupPictures);
 
   // создаёт новую карточку перед уже созданными
-  container.prepend(createCard(data));
+  container.prepend(createCard(cardName, cardUrl));
 }
 
-function createCard(link, title) {
-  return (new Card(link, title, templateId)).generateCard();
+function createCard(cardName, cardUrl) {
+  return (new Card(cardUrl, cardName, templateId)).generateCard();
 }
+
 
 // Функция отключения кнопки
 function buttonDisableWhenOpened(popupAddPic) {

@@ -32,13 +32,14 @@ const items = [
     link:
       'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-];
+]
 
 export class Card {
-  constructor(link, title, templateId) {
+  constructor(link, title, templateId, cardSelector) {
     this._title = title;
     this._link = link;
     this._templateId = templateId;
+    this._cardSelector = cardSelector;
   }
 
   _getTemplate() {
@@ -48,8 +49,14 @@ export class Card {
 
     // const cardElement = document.querySelector(this._templateId).content.firstElementChild.cloneNode(true);
 
+    // const cardElement = document
+    //   .querySelector(this._cardSelector)
+    //   .content
+    //   .firstElementChild
+    //   .cloneNode(true);
+
     return cardElement;
-  };
+  }
 
   _likeButton(e) {
     e.target.classList.toggle('elements__cell-like_active');
