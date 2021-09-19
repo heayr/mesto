@@ -1,14 +1,33 @@
 
 import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
 
+const classes = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'form__input-error_active'
+};
 
 // переменные для валидации!!!
 const formElement = document.querySelector('.popup__form');
+const editProfile = document.getElementById('popup');
+const addCard = document.getElementById('popup_cards');
+
+// на всякий случай объеявил заного через ID
+const profileValidation = new FormValidator(classes, editProfile);
+// const profileValidation = new FormValidator(classes, popup);
+profileValidation.enableValidation();
+
+const cardValidation = new FormValidator(classes, addCard);
+// const cardValidation = new FormValidator(classes, popupPictures);
+cardValidation.enableValidation();
 
 // попап для редакции
 const popupEdit = document.querySelector('.profile__edit-button');
 const closingButtons = document.querySelectorAll('.popup__close');
-const popupPicClose = document.querySelector('.popup__close_pic');
 const popup = document.querySelector('.popup');
 const nameInput = formElement.querySelector('.popup__input_text-name');
 const statusInput = formElement.querySelector('.popup__input_text-status');
@@ -19,19 +38,15 @@ const statusChange = document.querySelector('.profile__subtitle');
 const popupAddPic = document.querySelector('.profile__add-button');
 const popupPictures = document.querySelector('.popup_cards');
 const popupBigPic = document.querySelector('.popup-big');
-const picturesFormTemplate = document.querySelector('.template-cards');
 const templateId = document.getElementById('template');
 const container = document.querySelector('.elements');
 const pictureForm = document.querySelector('.popup__form-pic');
-const pictureNameInput = document.querySelector('.popup__input_picture-name');
 const newPictureUrlInput = popupPictures.querySelector('[name="input-picture-link"]');
 const newPictureNameInput = popupPictures.querySelector('[name="input-picture-name"]');
-const buttonCard = document.querySelector('.popup__submit-pic');
 
 // попап больших картинок
 const bigImg = document.querySelector('.popup__img');
 const figcaption = document.querySelector('.popup__figcaption');
-const closeBig = document.querySelector('.popup__close-big')
 
 // закрытие попапов мышкой
 const allPopups = document.querySelectorAll('.popup');
@@ -40,47 +55,18 @@ const AllPopupContainers = document.querySelectorAll('.popup__container');
 // переменная кнопки для отключения её в форме т.к. найти её нужно 1 раз!
 const disabledButton = popupPictures.querySelector('.popup__submit');
 
-
-/*
-// функция рендера начальных карточек.
-function createCard(i) {
-  const clonePicture = templateId.content.firstElementChild.cloneNode(true);
-  clonePicture.querySelector('.elements__cell-title').textContent = i.name;
-  clonePicture.querySelector('.elements__cell-like').addEventListener('click', (e) => {
-    e.target.classList.toggle('elements__cell-like_active');
-  })
-
-  const newPicture = clonePicture.querySelector('.elements__image');
-  // краткая запись атрибутов
-  newPicture.src = i.link;
-  newPicture.alt = i.name;
-
-  newPicture.addEventListener('click', onClickImg);
-
-  // удаление карточки снаружи функция - deletePic(e)
-  // clonePicture.querySelector('.elements__delete-button').addEventListener('click', deletePic);
-  return clonePicture;
-};
-
-*/
-
-// перебор массива
-// for (const i of initialCards) {
-//   container.appendChild(createCard(i));
-// }
-
 // чёт до меня долго доходило, что нужно просто представить это как своеобразный
 // массив, и вызывать его можно отдельно вне функции createCard. было дублирование ранее
 function formSubmitPictureFormHandler(evt) {
   evt.preventDefault();
   const cardName = newPictureNameInput.value;
   const cardUrl = newPictureUrlInput.value;
-  /*const data = {
+  /*const data = {    для класса проще реализовать без объекта
     name: cardName,
     link: cardUrl,
     alt: cardName
   };*/
-  //  сброс формы теперь внутри основной функции т.е. локально
+  //  сброс формы теперь внутри основной функции т.е. локально ---> работает и в классе *___*
   pictureForm.reset();
   // при закрытии важно не только вызвать функцию, но и выбрать, что закрывать в скобках
   closePopup(popupPictures);
@@ -88,7 +74,7 @@ function formSubmitPictureFormHandler(evt) {
   // создаёт новую карточку перед уже созданными
   container.prepend(createCard(cardName, cardUrl));
 }
-
+// новая функция рендера карточки через Class Card
 function createCard(cardName, cardUrl) {
   return (new Card(cardUrl, cardName, templateId)).generateCard();
 }
