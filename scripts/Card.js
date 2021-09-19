@@ -35,11 +35,11 @@ const items = [
 ]
 
 export class Card {
-  constructor(link, title, templateId, cardSelector) {
+  constructor(link, title) {
     this._title = title;
     this._link = link;
-    this._templateId = templateId;
-    this._cardSelector = cardSelector;
+    // this._templateId = templateId;
+    // this._cardSelector = cardSelector;
   }
 
   _getTemplate() {
