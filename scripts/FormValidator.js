@@ -1,7 +1,7 @@
 export class FormValidator {
-  constructor(classes, formElement) {
+  constructor(classes) {
     this._classes = classes;
-    this._formElement - formElement;
+    // this._formElement - formElement; в общем-то чёт не оч вышло с этим. поэтому без this._
   };
 
   // показать в инпуте ошибку
@@ -46,7 +46,6 @@ export class FormValidator {
       buttonElement.removeAttribute('disabled');
     }
   };
-  // функция обновления валидации в инпутах и создание массива инпутов
   _setEventListeners(formElement) {
     const inputList = Array.from(formElement.querySelectorAll(this._classes.inputSelector));
     const buttonElement = formElement.querySelector(this._classes.submitButtonSelector);
@@ -59,7 +58,7 @@ export class FormValidator {
     });
   };
 
-  enableValidation() {
+  enableValidation(formElement) {
     const formList = Array.from(document.querySelectorAll(this._classes.formSelector));
     // Переберём полученную коллекцию
     formList.forEach((formElement) => {
