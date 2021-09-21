@@ -1,22 +1,22 @@
 export class FormValidator {
-  constructor(classes) {
-    this._classes = classes;
+  constructor(selectors) {
+    this._selectors = selectors;
     // this._formElement - formElement; в общем-то чёт не оч вышло с этим. поэтому без this._
   };
 
   // показать в инпуте ошибку
   _showInputError(formElement, inputElement, errorMessage) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-    inputElement.classList.add(this._classes.inputErrorClass);
+    inputElement.classList.add(this._selectors.inputErrorClass);
     errorElement.textContent = errorMessage;
-    errorElement.classList.add(this._classes.errorClass)
+    errorElement.classList.add(this._selectors.errorClass)
   };
   // скрыть ошибку в инпуте
   // Находим элемент ошибки
   _hideInputError(formElement, inputElement) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-    inputElement.classList.remove(this._classes.inputErrorClass);
-    errorElement.classList.remove(this._classes.errorClass);
+    inputElement.classList.remove(this._selectors.inputErrorClass);
+    errorElement.classList.remove(this._selectors.errorClass);
     errorElement.textContent = '';
   };
   // проверить валидность
@@ -39,27 +39,38 @@ export class FormValidator {
   // тогл кнопки "сохранить" связана с функцией hasInvalidInput, которая проверяет есть хоть одно невалидное совпадение
   _toggleButtonState(inputList, buttonElement) {
     if (this._hasInvalidInput(inputList)) {
-      buttonElement.classList.add(this._classes.inactiveButtonClass);
+      buttonElement.classList.add(this._selectors.inactiveButtonClass);
       buttonElement.setAttribute('disabled', true);
     } else {
-      buttonElement.classList.remove(this._classes.inactiveButtonClass);
+      buttonElement.classList.remove(this._selectors.inactiveButtonClass);
       buttonElement.removeAttribute('disabled');
     }
   };
   _setEventListeners(formElement) {
-    const inputList = Array.from(formElement.querySelectorAll(this._classes.inputSelector));
-    const buttonElement = formElement.querySelector(this._classes.submitButtonSelector);
+    const inputList = Array.from(formElement.querySelectorAll(this._selectors.inputSelector));
+    const buttonElement = formElement.querySelector(this._selectors.submitButtonSelector);
 
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(formElement, inputElement);
-        this._toggleButtonState(inputList, buttonElement, this._classes.inactiveButtonClass);
+        this._toggleButtonState(inputList, buttonElement, this._selectors.inactiveButtonClass);
       });
     });
   };
 
+  // // Функция отключения кнопки
+  // const disabledButton = document.querySelector('.popup__submit');
+  // const popupAddPic = document.querySelector('.profile__add-button');
+
+  // buttonDisableWhenOpened() {
+  //   disabledButton.classList.add('popup__submit_disabled');
+  //   disabledButton.setAttribute('disabled', true);
+  //   popupAddPic.addEventListener('click', () => buttonDisableWhenOpened(popupPictures));
+
+  // }
+
   enableValidation(formElement) {
-    const formList = Array.from(document.querySelectorAll(this._classes.formSelector));
+    const formList = Array.from(document.querySelectorAll(this._selectors.formSelector));
     // Переберём полученную коллекцию
     formList.forEach((formElement) => {
       formElement.addEventListener('submit', (evt) => {

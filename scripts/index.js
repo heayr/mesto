@@ -3,7 +3,7 @@ import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import { initialCards } from "./InitialCards.js";
 
-const classes = {
+const selectors = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit',
@@ -17,19 +17,16 @@ const formElement = document.querySelector('.popup__form');
 const editProfile = document.getElementById('popup');
 const addCard = document.getElementById('popup_cards');
 
-// на всякий случай объеявил заного через ID
-const profileValidation = new FormValidator(classes, editProfile);
-// const profileValidation = new FormValidator(classes, popup);
+const profileValidation = new FormValidator(selectors, editProfile);
 profileValidation.enableValidation();
 
-const cardValidation = new FormValidator(classes, addCard);
-// const cardValidation = new FormValidator(classes, popupPictures);
+const cardValidation = new FormValidator(selectors, addCard);
 cardValidation.enableValidation();
 
 // попап для редакции
 const popupEdit = document.querySelector('.profile__edit-button');
 const closingButtons = document.querySelectorAll('.popup__close');
-const popup = document.querySelector('.popup');
+const popupProfile = document.querySelector('.popup');
 const nameInput = formElement.querySelector('.popup__input_text-name');
 const statusInput = formElement.querySelector('.popup__input_text-status');
 const profileName = document.querySelector('.profile__title');
@@ -39,7 +36,7 @@ const statusChange = document.querySelector('.profile__subtitle');
 const popupAddPic = document.querySelector('.profile__add-button');
 const popupPictures = document.querySelector('.popup_cards');
 const popupBigPic = document.querySelector('.popup-big');
-const templateId = document.getElementById('template');
+// const templateId = document.getElementById('template');
 const container = document.querySelector('.elements');
 const pictureForm = document.querySelector('.popup__form-pic');
 const newPictureUrlInput = popupPictures.querySelector('[name="input-picture-link"]');
@@ -48,7 +45,7 @@ const newPictureNameInput = popupPictures.querySelector('[name="input-picture-na
 // попап больших картинок
 const bigImg = document.querySelector('.popup__img');
 const figcaption = document.querySelector('.popup__figcaption');
-const closeBig = document.querySelector('.popup__close-big')
+// const closeBig = document.querySelector('.popup__close-big')
 
 // закрытие попапов мышкой
 const allPopups = document.querySelectorAll('.popup');
@@ -77,10 +74,8 @@ function handleSubmitPictureFormHandler(evt) {
   pictureForm.reset();
   closePopup(popupPictures);
   // создаёт новую карточку перед уже созданными
-
   container.prepend(createCard(item));
   console.log(item);
-
 }
 
 // новая функция рендера карточки через Class Card
@@ -89,20 +84,20 @@ function createCard(item) {
 }
 
 // Функция отключения кнопки
-function buttonDisableWhenOpened(popupAddPic) {
-  disabledButton.classList.add('popup__submit_disabled');
-  disabledButton.setAttribute('disabled', true);
-}
+// function buttonDisableWhenOpened(popupAddPic) {
+//   disabledButton.classList.add('popup__submit_disabled');
+//   disabledButton.setAttribute('disabled', true);
+// }
 
 // Функция открытия popup
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
+function openPopup(popupProfile) {
+  popupProfile.classList.add('popup_opened');
   document.addEventListener("keydown", onEscapeKey);
 }
 
 // функция закрытия попапов на крестик, кнопки выбираются автоматически благодаря функции onClickClosePopup
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
+function closePopup(popupProfile) {
+  popupProfile.classList.remove('popup_opened');
   document.removeEventListener("keydown", onEscapeKey);
 }
 
@@ -113,16 +108,16 @@ function onClickClosePopup(evt) {
 function onClickEdit() {
   nameInput.value = profileName.textContent;
   statusInput.value = statusChange.textContent;
-  openPopup(popup);
+  openPopup(popupProfile);
 }
 
 
 // save and close of popup info
-function formSubmitHandler(evt) {
+function handleFormSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   statusChange.textContent = statusInput.value;
-  closePopup(popup);
+  closePopup(popupProfile);
 }
 
 //Закрытие popup кнопкой Escape
@@ -173,7 +168,7 @@ export { onClickImg };
 popupEdit.addEventListener('click', onClickEdit);
 popupAddPic.addEventListener('click', () => openPopup(popupPictures));
 
-formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', handleFormSubmitHandler);
 pictureForm.addEventListener('submit', handleSubmitPictureFormHandler);
 //листнер+функция внутри него, которая выбирает все кнопки close в document с параметром closest к popup - гениально
 closingButtons.forEach(button => button.addEventListener('click', onClickClosePopup));
