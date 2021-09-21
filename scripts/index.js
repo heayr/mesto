@@ -84,10 +84,10 @@ function createCard(item) {
 }
 
 // Функция отключения кнопки
-// function buttonDisableWhenOpened(popupAddPic) {
-//   disabledButton.classList.add('popup__submit_disabled');
-//   disabledButton.setAttribute('disabled', true);
-// }
+function buttonDisableWhenOpened(popupAddPic) {
+  disabledButton.classList.add('popup__submit_disabled');
+  disabledButton.setAttribute('disabled', true);
+}
 
 // Функция открытия popup
 function openPopup(popupProfile) {
