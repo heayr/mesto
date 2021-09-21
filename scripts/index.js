@@ -57,6 +57,13 @@ const allPopupContainers = document.querySelectorAll('.popup__container');
 // переменная кнопки для отключения её в форме т.к. найти её нужно 1 раз!
 const disabledButton = popupPictures.querySelector('.popup__submit');
 
+// рендер начальных карточек
+initialCards.forEach((item) => {
+  const card = new Card(item, '.template-cards');
+  const cardElement = card.generateCard();
+  container.append(cardElement);
+});
+
 // добавление картинки
 function handleSubmitPictureFormHandler(evt) {
   evt.preventDefault();
@@ -65,22 +72,14 @@ function handleSubmitPictureFormHandler(evt) {
   pictureForm.reset();
   closePopup(popupPictures);
   // создаёт новую карточку перед уже созданными
+
   container.prepend(createCard(cardName, cardUrl));
 }
 
 // новая функция рендера карточки через Class Card
-function createCard(data) {
-  return (new Card(data, '#template')).generateCard();
-  console.log();
+function createCard(item) {
+  return (new Card(item, '#template')).generateCard();
 }
-
-
-// рендер начальных карточек
-initialCards.forEach((item) => {
-  const card = new Card(item, '.template-cards');
-  const cardElement = card.generateCard();
-  container.append(cardElement);
-});
 
 // Функция отключения кнопки
 function buttonDisableWhenOpened(popupAddPic) {
