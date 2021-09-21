@@ -1,7 +1,7 @@
 
+import { initialCards } from "./InitialCards.js";
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-import { initialCards } from "./InitialCards.js";
 
 const selectors = {
   formSelector: '.popup__form',
