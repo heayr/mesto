@@ -1,6 +1,7 @@
 
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import { initialCards } from "./InitialCards.js";
 
 const classes = {
   formSelector: '.popup__form',
@@ -47,38 +48,39 @@ const newPictureNameInput = popupPictures.querySelector('[name="input-picture-na
 // попап больших картинок
 const bigImg = document.querySelector('.popup__img');
 const figcaption = document.querySelector('.popup__figcaption');
+const closeBig = document.querySelector('.popup__close-big')
 
 // закрытие попапов мышкой
 const allPopups = document.querySelectorAll('.popup');
-const AllPopupContainers = document.querySelectorAll('.popup__container');
+const allPopupContainers = document.querySelectorAll('.popup__container');
 
 // переменная кнопки для отключения её в форме т.к. найти её нужно 1 раз!
 const disabledButton = popupPictures.querySelector('.popup__submit');
 
-// чёт до меня долго доходило, что нужно просто представить это как своеобразный
-// массив, и вызывать его можно отдельно вне функции createCard. было дублирование ранее
-function formSubmitPictureFormHandler(evt) {
+// добавление картинки
+function handleSubmitPictureFormHandler(evt) {
   evt.preventDefault();
   const cardName = newPictureNameInput.value;
   const cardUrl = newPictureUrlInput.value;
-  /*const data = {    для класса проще реализовать без объекта
-    name: cardName,
-    link: cardUrl,
-    alt: cardName
-  };*/
-  //  сброс формы теперь внутри основной функции т.е. локально ---> работает и в классе *___*
   pictureForm.reset();
-  // при закрытии важно не только вызвать функцию, но и выбрать, что закрывать в скобках
   closePopup(popupPictures);
-
   // создаёт новую карточку перед уже созданными
   container.prepend(createCard(cardName, cardUrl));
 }
+
 // новая функция рендера карточки через Class Card
-function createCard(cardName, cardUrl) {
-  return (new Card(cardUrl, cardName, templateId)).generateCard();
+function createCard(data) {
+  return (new Card(data, '#template')).generateCard();
+  console.log();
 }
 
+
+// рендер начальных карточек
+initialCards.forEach((item) => {
+  const card = new Card(item, '.template-cards');
+  const cardElement = card.generateCard();
+  container.append(cardElement);
+});
 
 // Функция отключения кнопки
 function buttonDisableWhenOpened(popupAddPic) {
@@ -128,7 +130,7 @@ function onEscapeKey(evt) {
 }
 
 // Не позволяет закрывать popup внутри контейнера popup
-AllPopupContainers.forEach((doNotClose) => {
+allPopupContainers.forEach((doNotClose) => {
   doNotClose.addEventListener('click', (evt) => {
     evt.stopPropagation();
   });
@@ -156,13 +158,17 @@ function onClickImg(e) {
 }
 export { onClickImg };
 
+
+
+
+
 // eventListener'Ы
 
 popupEdit.addEventListener('click', onClickEdit);
 popupAddPic.addEventListener('click', () => openPopup(popupPictures));
 
 formElement.addEventListener('submit', formSubmitHandler);
-pictureForm.addEventListener('submit', formSubmitPictureFormHandler);
+pictureForm.addEventListener('submit', handleSubmitPictureFormHandler);
 //листнер+функция внутри него, которая выбирает все кнопки close в document с параметром closest к popup - гениально
 closingButtons.forEach(button => button.addEventListener('click', onClickClosePopup));
 popupAddPic.addEventListener('click', () => buttonDisableWhenOpened(popupPictures));
