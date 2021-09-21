@@ -69,11 +69,18 @@ function handleSubmitPictureFormHandler(evt) {
   evt.preventDefault();
   const cardName = newPictureNameInput.value;
   const cardUrl = newPictureUrlInput.value;
+  const item = {
+    title: cardName,
+    link: cardUrl,
+    alt: cardName
+  };
   pictureForm.reset();
   closePopup(popupPictures);
   // создаёт новую карточку перед уже созданными
 
-  container.prepend(createCard(cardName, cardUrl));
+  container.prepend(createCard(item));
+  console.log(item);
+
 }
 
 // новая функция рендера карточки через Class Card
