@@ -1,7 +1,6 @@
 export class FormValidator {
   constructor(selectors) {
     this._selectors = selectors;
-    // this._formElement - formElement; в общем-то чёт не оч вышло с этим. поэтому без this._
   };
 
   // показать в инпуте ошибку
@@ -46,6 +45,12 @@ export class FormValidator {
       buttonElement.removeAttribute('disabled');
     }
   };
+
+  disableSubmitButtonWhenOpened() {
+    buttonElement.classList.add(this._selectors.inactiveButtonClass);
+    buttonElement.setAttribute('disabled', true);
+  }
+
   _setEventListeners(formElement) {
     const inputList = Array.from(formElement.querySelectorAll(this._selectors.inputSelector));
     const buttonElement = formElement.querySelector(this._selectors.submitButtonSelector);
@@ -58,16 +63,6 @@ export class FormValidator {
     });
   };
 
-  // // Функция отключения кнопки
-  // const disabledButton = document.querySelector('.popup__submit');
-  // const popupAddPic = document.querySelector('.profile__add-button');
-
-  // buttonDisableWhenOpened() {
-  //   disabledButton.classList.add('popup__submit_disabled');
-  //   disabledButton.setAttribute('disabled', true);
-  //   popupAddPic.addEventListener('click', () => buttonDisableWhenOpened(popupPictures));
-
-  // }
 
   enableValidation(formElement) {
     const formList = Array.from(document.querySelectorAll(this._selectors.formSelector));

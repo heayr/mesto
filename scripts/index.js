@@ -83,11 +83,26 @@ function createCard(item) {
   return (new Card(item, '#template')).generateCard();
 }
 
-// Функция отключения кнопки
-function buttonDisableWhenOpened(popupAddPic) {
-  disabledButton.classList.add('popup__submit_disabled');
-  disabledButton.setAttribute('disabled', true);
-}
+const cardFormValidator = new FormValidator(selectors, formElement);
+popupAddPic.addEventListener('click', () =>
+  cardFormValidator.buttonDisableWhenOpened()
+);
+/*
+const cardFormValidator = new FormValidator(config, cardFormElement);
+
+popupAddPic.addEventListener("click", () =>
+  cardFormValidator.buttonDisableWhenOpened()
+);
+*/
+
+// // Функция отключения кнопки
+// function buttonDisableWhenOpened(popupAddPic) {
+//   disabledButton.classList.add('popup__submit_disabled');
+//   disabledButton.setAttribute('disabled', true);
+// }
+// disableSubmitButtonWhenOpened(popupAddPic);
+// popupAddPic.addEventListener('click', () => disableSubmitButtonWhenOpened());
+
 
 // Функция открытия popup
 function openPopup(popupProfile) {
@@ -160,9 +175,6 @@ function onClickImg(e) {
 export { onClickImg };
 
 
-
-
-
 // eventListener'Ы
 
 popupEdit.addEventListener('click', onClickEdit);
@@ -172,6 +184,6 @@ formElement.addEventListener('submit', handleFormSubmitHandler);
 pictureForm.addEventListener('submit', handleSubmitPictureFormHandler);
 //листнер+функция внутри него, которая выбирает все кнопки close в document с параметром closest к popup - гениально
 closingButtons.forEach(button => button.addEventListener('click', onClickClosePopup));
-popupAddPic.addEventListener('click', () => buttonDisableWhenOpened(popupPictures));
+// popupAddPic.addEventListener('click', () => buttonDisableWhenOpened(popupPictures));
 
 
