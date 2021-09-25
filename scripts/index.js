@@ -85,17 +85,11 @@ function createCard(item) {
 
 const cardFormValidator = new FormValidator(selectors, formElement);
 popupAddPic.addEventListener('click', () =>
-  cardFormValidator.buttonDisableWhenOpened()
+  cardFormValidator.disableSubmitButtonWhenOpened()
 );
-/*
-const cardFormValidator = new FormValidator(config, cardFormElement);
 
-popupAddPic.addEventListener("click", () =>
-  cardFormValidator.buttonDisableWhenOpened()
-);
-*/
-
-// // Функция отключения кнопки
+//
+// OLD Функция отключения кнопки
 // function buttonDisableWhenOpened(popupAddPic) {
 //   disabledButton.classList.add('popup__submit_disabled');
 //   disabledButton.setAttribute('disabled', true);
@@ -113,7 +107,7 @@ function openPopup(popupProfile) {
 // функция закрытия попапов на крестик, кнопки выбираются автоматически благодаря функции onClickClosePopup
 function closePopup(popupProfile) {
   popupProfile.classList.remove('popup_opened');
-  document.removeEventListener("keydown", onEscapeKey);
+  document.removeEventListener('keydown', onEscapeKey);
 }
 
 function onClickClosePopup(evt) {

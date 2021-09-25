@@ -46,7 +46,7 @@ export class FormValidator {
     }
   };
 
-  disableSubmitButtonWhenOpened() {
+  disableSubmitButtonWhenOpened(buttonElement) {
     buttonElement.classList.add(this._selectors.inactiveButtonClass);
     buttonElement.setAttribute('disabled', true);
   }
