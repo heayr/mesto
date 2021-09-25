@@ -1,6 +1,7 @@
 export class FormValidator {
-  constructor(selectors) {
+  constructor(selectors, buttonElement) {
     this._selectors = selectors;
+    this._buttonElement = buttonElement;
   };
 
   // показать в инпуте ошибку
@@ -46,9 +47,10 @@ export class FormValidator {
     }
   };
 
-  disableSubmitButtonWhenOpened(buttonElement) {
+  disableSubmitButtonWhenOpened() {
     buttonElement.classList.add(this._selectors.inactiveButtonClass);
     buttonElement.setAttribute('disabled', true);
+
   }
 
   _setEventListeners(formElement) {
