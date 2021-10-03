@@ -14,14 +14,9 @@ const selectors = {
 
 // переменные для валидации!!!
 const formElement = document.querySelector('.popup__form');
-const editProfile = document.getElementById('popup');
-const addCard = document.getElementById('popup_cards');
+const editFormModalWindow = document.getElementById('popup');
+const cardFormModalWindow = document.getElementById('popup_cards');
 
-const profileValidation = new FormValidator(selectors, editProfile);
-profileValidation.enableValidation();
-
-const cardValidation = new FormValidator(selectors, addCard);
-cardValidation.enableValidation();
 
 // попап для редакции
 const popupEdit = document.querySelector('.profile__edit-button');
@@ -33,7 +28,7 @@ const profileName = document.querySelector('.profile__title');
 const statusChange = document.querySelector('.profile__subtitle');
 
 // попап для создания новых карточек
-const popupAddPic = document.querySelector('.profile__add-button');
+const openCardFormButton = document.querySelector('.profile__add-button');
 const popupPictures = document.querySelector('.popup_cards');
 const popupBigPic = document.querySelector('.popup-big');
 // const templateId = document.getElementById('template');
@@ -75,27 +70,25 @@ function handleSubmitPictureFormHandler(evt) {
   closePopup(popupPictures);
   // создаёт новую карточку перед уже созданными
   container.prepend(createCard(item));
-  console.log(item);
 }
 
-// новая функция рендера карточки через Class Card
+// <-------- новый функционал через Class Card --------->
 function createCard(item) {
   return (new Card(item, '#template')).generateCard();
 }
 
-const cardFormValidator = new FormValidator(selectors, formElement);
-popupAddPic.addEventListener('click', () =>
-  cardFormValidator.disableSubmitButtonWhenOpened()
-);
+const editFormValidator = new FormValidator(selectors, editFormModalWindow);
+editFormValidator.enableValidation();
 
-//
-// OLD Функция отключения кнопки
-// function buttonDisableWhenOpened(popupAddPic) {
-//   disabledButton.classList.add('popup__submit_disabled');
-//   disabledButton.setAttribute('disabled', true);
-// }
-// disableSubmitButtonWhenOpened(popupAddPic);
-// popupAddPic.addEventListener('click', () => disableSubmitButtonWhenOpened());
+const cardFormValidator = new FormValidator(selectors, cardFormModalWindow);
+cardFormValidator.enableValidation();
+
+openCardFormButton.addEventListener('click', () => {
+  cardFormValidator.disableSubmitButton();
+  openModalWindow(cardFormModalWindow);
+});
+
+// <-------- новый функционал через Class Card --------->
 
 
 // Функция открытия popup
@@ -172,12 +165,12 @@ export { onClickImg };
 // eventListener'Ы
 
 popupEdit.addEventListener('click', onClickEdit);
-popupAddPic.addEventListener('click', () => openPopup(popupPictures));
+openCardFormButton.addEventListener('click', () => openPopup(popupPictures));
 
 formElement.addEventListener('submit', handleFormSubmitHandler);
 pictureForm.addEventListener('submit', handleSubmitPictureFormHandler);
 //листнер+функция внутри него, которая выбирает все кнопки close в document с параметром closest к popup - гениально
 closingButtons.forEach(button => button.addEventListener('click', onClickClosePopup));
-// popupAddPic.addEventListener('click', () => buttonDisableWhenOpened(popupPictures));
+// openCardFormButton.addEventListener('click', () => buttonDisableWhenOpened(popupPictures));
 
 
