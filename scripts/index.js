@@ -85,7 +85,7 @@ cardFormValidator.enableValidation();
 
 openCardFormButton.addEventListener('click', () => {
   cardFormValidator.disableSubmitButton();
-  openModalWindow(cardFormModalWindow);
+  // openModalWindow(cardFormModalWindow);
 });
 
 // <-------- новый функционал через Class Card --------->
