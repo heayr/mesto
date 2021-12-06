@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Место</title>
+    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
+  </head>
+
+  <body class="body">
+    <header class="header">
+      <a href="#">
+        <img
+          class="header__logo"
+          src="<%=require('./images/logo.svg')%>"
+          alt="Лого"
+        />
+      </a>
+    </header>
+    <!-- начало мейна страницы  -->
+    <main class="root">
+      <section class="profile">
+        <div class="profile__content">
+          <img
+            class="profile__avatar"
+            src="<%=require('./images/kusto.png')%>"
+            alt="Аватар"
+          />
+          <div class="profile__info">
+            <div class="profile__text">
+              <h1 class="profile__title">Жак-Ив Кусто</h1>
+              <p class="profile__subtitle">Исследователь океана</p>
+            </div>
+            <!-- кнопка редактировать -->
+            <button class="profile__edit-button" type="button"></button>
+          </div>
+        </div>
+        <!-- кнопка добавить -->
+        <button class="profile__add-button" type="button"></button>
+      </section>
+      <!-- секция карточек -->
+      <section class="elements-section">
+        <ul class="elements"></ul>
+      </section>
+    </main>
+    <!-- футер -->
+    <footer class="footer">
+      <p class="footer__title">© 2021 Mesto Russia</p>
+    </footer>
+    <!-- попап для редактирования имени, статуса-->
+    <div class="popup popup__profile" id="popup">
+      <div class="popup__container">
+        <button class="popup__close" type="button"></button>
+        <form class="popup__form" name="user" novalidate>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input
+            id="user-name"
+            class="popup__input popup__input_text-name popup__input_invalid"
+            type="text"
+            value=""
+            name="input-name"
+            required
+            minlength="2"
+            maxlength="40"
+          />
+          <span id="user-name-error" class="popup__error"></span>
+          <input
+            id="status-name"
+            class="popup__input popup__input_text-status popup__input_invalid"
+            type="text"
+            name="input-status"
+            value=""
+            required
+            minlength="2"
+            maxlength="200"
+          />
+          <span id="status-name-error" class="popup__error"></span>
+          <button class="popup__submit" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <!-- попап для создания карточек  -->
+    <div class="popup popup_cards" id="popup_cards">
+      <div class="popup__container">
+        <button class="popup__close popup__close_pic" type="button"></button>
+        <form class="popup__form popup__form-pic" name="card" novalidate>
+          <h2 class="popup__title popup__title_picture">Новое место</h2>
+          <input
+            id="picture-name"
+            class="popup__input popup__input_picture-name popup__input_invalid"
+            type="text"
+            value=""
+            placeholder="Название"
+            required
+            name="input-picture-name"
+            minlength="2"
+            maxlength="30"
+          />
+          <span id="picture-name-error" class="popup__error"></span>
+          <input
+            id="url"
+            class="popup__input popup__input_picture-link popup__input_invalid"
+            type="url"
+            name="input-picture-link"
+            required
+            placeholder="Ссылка на картинку"
+            value=""
+          />
+          <span id="url-error" class="popup__error"></span>
+          <button
+            class="popup__submit popup__submit-pic"
+            id="submit"
+            type="submit"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- попап большие картинки -->
+    <div class="popup popup-big">
+      <div class="popup__big-pic">
+        <button class="popup__close popup__close-big"></button>
+        <figure class="popup__figure">
+          <img class="popup__img" />
+          <figcaption class="popup__figcaption" alt></figcaption>
+        </figure>
+      </div>
+    </div>
+    <!-- темплейт для карточек -->
+    <template class="template-cards">
+      <li class="elements__cell">
+        <img class="elements__image" alt />
+        <h2 class="elements__cell-title"></h2>
+        <button class="elements__cell-like" type="button"></button>
+        <button class="elements__delete-button" type="button"></button>
+      </li>
+    </template>
+    <!-- <script type="module" src="./index.js" defer></script> -->
+  </body>
+</html>
