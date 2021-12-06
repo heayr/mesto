@@ -1,14 +1,14 @@
-import './pages/index.css';
-import { initialCards } from "../src/scripts/initialCards.js";
+import './index.css';
+import { initialCards } from "../scripts/initialCards.js";
 
-import { FormValidator } from "../src/scripts/FormValidator.js";
+import { FormValidator } from "../scripts/FormValidator.js";
 
-import Card from "../src/scripts/Card.js";
-import Section from "../src/scripts/Section.js";
-import { Popup } from "../src/scripts/Popup.js";
-import { PopupWithImage } from "../src/scripts/PopupWithImage.js";
-import PopupWithForm from "../src/scripts/PopupWithForm.js";
-import UserInfo from "../src/scripts/UserInfo.js";
+import Card from "../scripts/Card.js";
+import Section from "../scripts/Section.js";
+import { Popup } from "../scripts/Popup.js";
+import { PopupWithImage } from "../scripts/PopupWithImage.js";
+import PopupWithForm from "../scripts/PopupWithForm.js";
+import UserInfo from "../scripts/UserInfo.js";
 
 const selectors = {
   formSelector: '.popup__form',
