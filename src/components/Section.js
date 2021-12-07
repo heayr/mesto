@@ -2,12 +2,12 @@ export default class Section {
   constructor({ data, renderer }, cardListSelector) {
     this._renderedItems = data;
     this._renderer = renderer;
-    // this._container = document.querySelector(cardListSelector);
+    this._container = document.querySelector(cardListSelector);
     /*когда такое написание document.querySelector(cardListSelector)
      в функции рендера нужно использовать
     именно '.elements' для обозначения селектора в коде!*/
 
-    this._container = cardListSelector;
+    // this._container = cardListSelector;
     /* когда такое написание в коде используем сразу cardListSelector */
 
   }
@@ -18,6 +18,7 @@ export default class Section {
 
   addItem(element) {
     this._container.prepend(element);
+    // обязательно попробую метод из коммента, но не сегодня *____*
   }
 
   rendererItems() {

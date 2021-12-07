@@ -1,106 +1,104 @@
 import './index.css';
-import { initialCards } from "../scripts/initialCards.js";
+import { initialCards } from "../utils/constants";
+import { FormValidator } from "../components/FormValidator.js";
+import Card from "../components/Card.js";
+import Section from "../components/Section.js";
+import { Popup } from "../components/Popup.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
-import { FormValidator } from "../scripts/FormValidator.js";
+import { parameters } from '../utils/constants';
+import { profileForm } from '../utils/constants';
+import { popupEditButton } from '../utils/constants';
+import { nameInput } from '../utils/constants';
+import { statusInput } from '../utils/constants';
+import { openCardFormButton } from '../utils/constants';
+import { popupPictures } from '../utils/constants';
+import { cardListSelector } from '../utils/constants';
 
-import Card from "../scripts/Card.js";
-import Section from "../scripts/Section.js";
-import { Popup } from "../scripts/Popup.js";
-import { PopupWithImage } from "../scripts/PopupWithImage.js";
-import PopupWithForm from "../scripts/PopupWithForm.js";
-import UserInfo from "../scripts/UserInfo.js";
+import { editFormModalWindow } from '../utils/constants';
+import { cardFormModalWindow } from '../utils/constants';
 
-const selectors = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__submit_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'form__input-error_active'
-};
-
-// переменные для валидации!!!
-const formElement = document.querySelector('.popup__form');
-const editFormModalWindow = document.getElementById('popup');
-const cardFormModalWindow = document.getElementById('popup_cards');
-
-
-// попап для редакции
-const popupEdit = document.querySelector('.profile__edit-button');
-const nameInput = formElement.querySelector('.popup__input_text-name');
-const statusInput = formElement.querySelector('.popup__input_text-status');
-
-// попап для создания новых карточек
-const openCardFormButton = document.querySelector('.profile__add-button');
-const popupPictures = document.querySelector('.popup_cards');
-const cardListSelector = document.querySelector('.elements');
-
-// константы
-const editFormValidator = new FormValidator(selectors, editFormModalWindow);
+const editFormValidator = new FormValidator(parameters, editFormModalWindow);
 editFormValidator.enableValidation();
-
-const cardFormValidator = new FormValidator(selectors, cardFormModalWindow);
+const cardFormValidator = new FormValidator(parameters, cardFormModalWindow);
 cardFormValidator.enableValidation();
-
 const newCardImg = new PopupWithImage(".popup-big");
+const newUser = new UserInfo({ userName: '.profile__title', userSubtitle: '.profile__subtitle' });
+
+
 // функции
 function handleCardClick(title, link) {
   newCardImg.open(title, link);
 }
+
+
+const createCard = (item) => {
+  const newCardMesto = new Card(item, handleCardClick, '.template-cards');
+  return newCardMesto.generateCard();
+}
+
 const defaultCardList = new Section({
   data: initialCards,
   renderer: (item) => {
-    const card = new Card(item, handleCardClick, '.template-cards');
-    const cardElement = card.generateCard();
-    defaultCardList.addItem(cardElement);
-  },
-}, cardListSelector);
+    defaultCardList.addItem(createCard(item))
+  }
+}, '.elements');
 
-const form = new PopupWithForm({
+// const addCardPopup = new PopupWithForm({
+//   popupSelector: '.popup_cards',
+//   formSubmitHandler: (item) => {
+//     const imgCard = new Card({ title: item["input-picture-name"], link: item["input-picture-link"] },
+//       handleCardClick,
+//       '.template-cards');
+//     const cardElement = imgCard.generateCard();
+//     defaultCardList.addItem(cardElement);
+//     addCardPopup.close();
+//   },
+// });
+// const cardOp = document.querySelector('.popup_cards');
+// const addCardPopup = new PopupWithForm(cardOp, (item) => {
+//   defaultCardList.addItem(createCard(item));
+//   addCardPopup.close()
+// });
+
+const addCardPopup = new PopupWithForm({
   popupSelector: '.popup_cards',
   formSubmitHandler: (item) => {
-    const imgCard = new Card({ title: item["input-picture-name"], link: item["input-picture-link"] },
-      handleCardClick,
-      '.template-cards');
-    const cardElement = imgCard.generateCard();
-    defaultCardList.addItem(cardElement);
-    form.close();
-  },
-}, cardListSelector /* похоже этот селектор не влияет ни на что */);
+    defaultCardList.addItem(createCard({ title: item["input-picture-name"], link: item["input-picture-link"] }));
+    addCardPopup.close()
+  }
+});
 
 defaultCardList.rendererItems();
 
-
-
-const newUser = new UserInfo({ userNameSelector: '.profile__title', userSubtitleSelector: '.profile__subtitle' });
-
-
-const profile = new PopupWithForm({
+const profilePopup = new PopupWithForm({
   popupSelector: '.popup',
   formSubmitHandler: (data) => {
     newUser.setUserInfo(data);
-    profile.close();
+    profilePopup.close();
   }
 });
 
 //  листенеры
-profile.setEventListeners();
+profilePopup.setEventListeners();
 
 openCardFormButton.addEventListener('click', () => {
   cardFormValidator.disableSubmitButton();
-  form.open();
+  addCardPopup.open();
 });
 
 
-popupEdit.addEventListener('click', () => {
+popupEditButton.addEventListener('click', () => {
   const userInfo = newUser.getUserInfo();
   nameInput.value = userInfo.title;
   statusInput.value = userInfo.subtitle;
-  profile.open();
+  profilePopup.open();
 });
 
 newCardImg.setEventListeners();
-form.setEventListeners();
+addCardPopup.setEventListeners();
 
 
 

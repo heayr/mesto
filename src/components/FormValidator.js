@@ -61,6 +61,7 @@ export class FormValidator {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
         this._toggleButtonState(this._inputList);
+        // 63-я строка отвечает за состояние кнопки, если удалить эту строку, после валидации, кнопка сабмита не станет активной
       });
     });
   }
