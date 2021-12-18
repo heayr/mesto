@@ -21,11 +21,13 @@
     <main class="root">
       <section class="profile">
         <div class="profile__content">
-          <img
-            class="profile__avatar"
-            src="<%=require('./images/kusto.png')%>"
-            alt="Аватар"
-          />
+          <div class="profile__avatar-container">
+            <img
+              class="profile__avatar"
+              src="<%=require('./images/kusto.png')%>"
+              alt="Аватар"
+            />
+          </div>
           <div class="profile__info">
             <div class="profile__text">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -132,7 +134,10 @@
       <li class="elements__cell">
         <img class="elements__image" alt />
         <h2 class="elements__cell-title"></h2>
-        <button class="elements__cell-like" type="button"></button>
+        <div class="elements__cell-like-container">
+          <button class="elements__cell-like" type="button"></button>
+          <p class="elements__cell-like-counter">1</p>
+        </div>
         <button class="elements__delete-button" type="button"></button>
       </li>
     </template>

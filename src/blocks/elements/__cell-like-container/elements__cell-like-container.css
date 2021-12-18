@@ -1,0 +1,6 @@
+.elements__cell-like-container {
+  display: grid;
+  grid-row: 2/2;
+  grid-column: 1/2;
+  margin: 20px 20px 20px 20px;
+}

@@ -36,3 +36,6 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/footer/__title/footer__title.css);
 @import url(../blocks/footer/footer.css);
+@import url(../blocks/profile/__avatar-container/profile__avatar-container.css);
+@import url(../blocks/elements/__cell-like-container/elements__cell-like-container.css);
+@import url(../blocks/elements/__cell-like-counter/elements__cell-like-counter.css);
